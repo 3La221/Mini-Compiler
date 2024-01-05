@@ -62,34 +62,47 @@
      vig = 278,
      po = 279,
      pf = 280,
-     mc_err = 281,
-     mc_reel = 282,
-     cst_chaine = 283,
-     mc_dimension = 284,
-     mc_true = 285,
-     mc_false = 286,
-     moin = 287,
-     plus = 288,
-     divsep = 289,
-     mc_integer = 290,
-     mc_char = 291,
-     mc_real = 292,
-     mc_logical = 293,
-     mc_ge = 294,
-     mc_gt = 295,
-     mc_le = 296,
-     mc_lt = 297,
-     mc_ne = 298,
-     mc_eq = 299,
-     mc_and = 300,
-     mc_or = 301
+     cst_chaine = 281,
+     mc_dimension = 282,
+     mc_true = 283,
+     mc_false = 284,
+     moin = 285,
+     plus = 286,
+     divsep = 287,
+     mc_integer = 288,
+     mc_char = 289,
+     mc_real = 290,
+     mc_logical = 291,
+     mc_ge = 292,
+     mc_gt = 293,
+     mc_le = 294,
+     mc_lt = 295,
+     mc_ne = 296,
+     mc_eq = 297,
+     mc_and = 298,
+     mc_or = 299
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 27 "./syntax.y"
+
+    int entier ;
+    char* str ;
+    float reel ;
+
+
+
+
+/* Line 1676 of yacc.c  */
+#line 105 "syntax.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

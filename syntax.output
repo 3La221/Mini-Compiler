@@ -1,9 +1,3 @@
-Terminals unused in grammar
-
-   mc_err
-   mc_reel
-
-
 Grammar
 
     0 $accept: S $end
@@ -83,39 +77,34 @@ Grammar
    55    | /* empty */
 
    56 INST_AFF: idf aff EXP_ARTH pvg
-   57         | idf aff cst_int
-   58         | idf aff cst_real
-   59         | idf aff cst_chaine
 
-   60 EXP_ARTH: EXP_ARTH plus EXP_ARTH
-   61         | EXP_ARTH moin EXP_ARTH
-   62         | EXP_ARTH mul EXP_ARTH
-   63         | EXP_ARTH divsep EXP_ARTH
-   64         | EXP_ARTH mc_ge EXP_ARTH
-   65         | EXP_ARTH mc_gt EXP_ARTH
-   66         | EXP_ARTH mc_le EXP_ARTH
-   67         | EXP_ARTH mc_lt EXP_ARTH
-   68         | EXP_ARTH mc_ne EXP_ARTH
-   69         | EXP_ARTH mc_eq EXP_ARTH
-   70         | EXP_ARTH mc_and EXP_ARTH
-   71         | EXP_ARTH mc_or EXP_ARTH
-   72         | po EXP_ARTH pf
-   73         | OPERANDE
+   57 EXP_ARTH: EXP_ARTH plus EXP_ARTH
+   58         | EXP_ARTH moin EXP_ARTH
+   59         | EXP_ARTH mul EXP_ARTH
+   60         | EXP_ARTH divsep EXP_ARTH
+   61         | EXP_ARTH mc_ge EXP_ARTH
+   62         | EXP_ARTH mc_gt EXP_ARTH
+   63         | EXP_ARTH mc_le EXP_ARTH
+   64         | EXP_ARTH mc_lt EXP_ARTH
+   65         | EXP_ARTH mc_ne EXP_ARTH
+   66         | EXP_ARTH mc_eq EXP_ARTH
+   67         | EXP_ARTH mc_and EXP_ARTH
+   68         | EXP_ARTH mc_or EXP_ARTH
+   69         | po EXP_ARTH pf
+   70         | OPERANDE
 
-   74 OPERANDE: idf
-   75         | idf po INDICE pf
-   76         | idf po idf vig idf pf
-   77         | cst_int
-   78         | cst_real
-   79         | cst_chaine
-   80         | mc_true
-   81         | mc_false
+   71 OPERANDE: idf
+   72         | idf po INDICE pf
+   73         | idf po idf vig idf pf
+   74         | CST
+   75         | mc_true
+   76         | mc_false
 
-   82 INDICE: idf
-   83       | cst_int
-   84       | idf vig cst_int
-   85       | cst_int vig cst_int
-   86       | cst_int vig idf
+   77 INDICE: idf
+   78       | cst_int
+   79       | idf vig cst_int
+   80       | cst_int vig cst_int
+   81       | cst_int vig idf
 
 
 Terminals, with rules where they appear
@@ -135,91 +124,89 @@ mc_endif (267) 17
 mc_dowhile (268) 18
 mc_enddo (269) 18
 mc_equivalence (270) 21
-mul (271) 48 49 50 51 62
+mul (271) 48 49 50 51 59
 mc_call (272) 29
 idf (273) 2 7 9 10 22 23 24 25 26 27 29 30 31 33 35 37 40 41 44 45
-    46 47 48 49 50 51 56 57 58 59 74 75 76 82 84 86
-cst_int (274) 23 26 40 41 48 49 50 51 53 57 77 83 84 85 86
-cst_real (275) 24 27 54 58 78
-aff (276) 29 46 47 50 51 56 57 58 59
+    46 47 48 49 50 51 56 71 72 73 77 79 81
+cst_int (274) 23 26 40 41 48 49 50 51 53 78 79 80 81
+cst_real (275) 24 27 54
+aff (276) 29 46 47 50 51 56
 pvg (277) 18 21 29 32 37 40 41 42 56
-vig (278) 9 21 22 23 24 30 33 34 41 44 46 48 50 76 84 85 86
-po (279) 7 17 18 21 23 24 26 27 29 32 37 40 41 72 75 76
-pf (280) 7 17 18 21 23 24 26 27 29 32 37 40 41 72 75 76
-mc_err (281)
-mc_reel (282)
-cst_chaine (283) 34 36 50 51 52 59 79
-mc_dimension (284) 40 41
-mc_true (285) 80
-mc_false (286) 81
-moin (287) 61
-plus (288) 60
-divsep (289) 63
-mc_integer (290) 4
-mc_char (291) 5
-mc_real (292) 3
-mc_logical (293) 6
-mc_ge (294) 64
-mc_gt (295) 65
-mc_le (296) 66
-mc_lt (297) 67
-mc_ne (298) 68
-mc_eq (299) 69
-mc_and (300) 70
-mc_or (301) 71
+vig (278) 9 21 22 23 24 30 33 34 41 44 46 48 50 73 79 80 81
+po (279) 7 17 18 21 23 24 26 27 29 32 37 40 41 69 72 73
+pf (280) 7 17 18 21 23 24 26 27 29 32 37 40 41 69 72 73
+cst_chaine (281) 34 36 50 51 52
+mc_dimension (282) 40 41
+mc_true (283) 75
+mc_false (284) 76
+moin (285) 58
+plus (286) 57
+divsep (287) 60
+mc_integer (288) 4
+mc_char (289) 5
+mc_real (290) 3
+mc_logical (291) 6
+mc_ge (292) 61
+mc_gt (293) 62
+mc_le (294) 63
+mc_lt (295) 64
+mc_ne (296) 65
+mc_eq (297) 66
+mc_and (298) 67
+mc_or (299) 68
 
 
 Nonterminals, with rules where they appear
 
-$accept (47)
+$accept (45)
     on left: 0
-S (48)
+S (46)
     on left: 1, on right: 0
-PROGRAM (49)
+PROGRAM (47)
     on left: 2, on right: 1
-TYPE (50)
+TYPE (48)
     on left: 3 4 5 6, on right: 7 40 41 42
-ROUTINE (51)
+ROUTINE (49)
     on left: 7 8, on right: 1 7
-ARGS (52)
+ARGS (50)
     on left: 9 10, on right: 7 9
-INST (53)
+INST (51)
     on left: 11 12 13 14 15 16, on right: 38
-INST_COND (54)
+INST_COND (52)
     on left: 17 18, on right: 11
-ELSE (55)
+ELSE (53)
     on left: 19 20, on right: 17
-INST_EQUIVALENCE (56)
+INST_EQUIVALENCE (54)
     on left: 21, on right: 13
-VAR_LIST (57)
+VAR_LIST (55)
     on left: 22 23 24 25 26 27 28, on right: 21 22 23 24
-INST_CALL (58)
+INST_CALL (56)
     on left: 29, on right: 14
-IDF_LIST (59)
+IDF_LIST (57)
     on left: 30 31, on right: 29 30
-INST_WRITE (60)
+INST_WRITE (58)
     on left: 32, on right: 16
-SMTH (61)
+SMTH (59)
     on left: 33 34 35 36, on right: 32 33 34
-INST_READ (62)
+INST_READ (60)
     on left: 37, on right: 15
-LIST_INST (63)
+LIST_INST (61)
     on left: 38 39, on right: 2 7 17 18 19 38
-DEC (64)
+DEC (62)
     on left: 40 41 42 43, on right: 2 7 40 41 42
-LIST_IDF_DEC (65)
+LIST_IDF_DEC (63)
     on left: 44 45 46 47 48 49 50 51, on right: 42 44 46 48 50
-CST (66)
-    on left: 52 53 54 55, on right: 46 47
-INST_AFF (67)
-    on left: 56 57 58 59, on right: 12
-EXP_ARTH (68)
-    on left: 60 61 62 63 64 65 66 67 68 69 70 71 72 73, on right: 17
-    18 56 60 61 62 63 64 65 66 67 68 69 70 71 72
-OPERANDE (69)
-    on left: 74 75 76 77 78 79 80 81, on right: 73
-INDICE (70)
-    on left: 82 83 84 85 86, on right: 75
+CST (64)
+    on left: 52 53 54 55, on right: 46 47 74
+INST_AFF (65)
+    on left: 56, on right: 12
+EXP_ARTH (66)
+    on left: 57 58 59 60 61 62 63 64 65 66 67 68 69 70, on right: 17
+    18 56 57 58 59 60 61 62 63 64 65 66 67 68 69
+OPERANDE (67)
+    on left: 71 72 73 74 75 76, on right: 70
+INDICE (68)
+    on left: 77 78 79 80 81, on right: 72
 
 
 state 0
@@ -466,9 +453,6 @@ state 26
 
    29 INST_CALL: idf . aff mc_call idf po IDF_LIST pf pvg
    56 INST_AFF: idf . aff EXP_ARTH pvg
-   57         | idf . aff cst_int
-   58         | idf . aff cst_real
-   59         | idf . aff cst_chaine
 
     aff  shift, and go to state 47
 
@@ -647,15 +631,18 @@ state 44
    17 INST_COND: mc_if po . EXP_ARTH pf mc_then LIST_INST ELSE mc_endif
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
-    EXP_ARTH  go to state 72
-    OPERANDE  go to state 73
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 70
+    OPERANDE  go to state 71
 
 
 state 45
@@ -663,47 +650,50 @@ state 45
    18 INST_COND: mc_dowhile po . EXP_ARTH pf LIST_INST mc_enddo pvg
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
-    EXP_ARTH  go to state 74
-    OPERANDE  go to state 73
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 72
+    OPERANDE  go to state 71
 
 
 state 46
 
    21 INST_EQUIVALENCE: mc_equivalence po . VAR_LIST pf vig po VAR_LIST pf pvg
 
-    idf  shift, and go to state 75
+    idf  shift, and go to state 73
 
     $default  reduce using rule 28 (VAR_LIST)
 
-    VAR_LIST  go to state 76
+    VAR_LIST  go to state 74
 
 
 state 47
 
    29 INST_CALL: idf aff . mc_call idf po IDF_LIST pf pvg
    56 INST_AFF: idf aff . EXP_ARTH pvg
-   57         | idf aff . cst_int
-   58         | idf aff . cst_real
-   59         | idf aff . cst_chaine
 
-    mc_call     shift, and go to state 77
+    mc_call     shift, and go to state 75
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 78
-    cst_real    shift, and go to state 79
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 80
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
-    EXP_ARTH  go to state 81
-    OPERANDE  go to state 73
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 76
+    OPERANDE  go to state 71
 
 
 state 48
@@ -746,7 +736,7 @@ state 51
     INST_CALL         go to state 30
     INST_WRITE        go to state 31
     INST_READ         go to state 32
-    LIST_INST         go to state 82
+    LIST_INST         go to state 77
     INST_AFF          go to state 34
 
 
@@ -757,8 +747,8 @@ state 52
    50             | idf mul cst_int . aff cst_chaine vig LIST_IDF_DEC
    51             | idf mul cst_int . aff cst_chaine
 
-    aff  shift, and go to state 83
-    vig  shift, and go to state 84
+    aff  shift, and go to state 78
+    vig  shift, and go to state 79
 
     $default  reduce using rule 49 (LIST_IDF_DEC)
 
@@ -789,7 +779,7 @@ state 56
    46 LIST_IDF_DEC: idf aff CST . vig LIST_IDF_DEC
    47             | idf aff CST .
 
-    vig  shift, and go to state 85
+    vig  shift, and go to state 80
 
     $default  reduce using rule 47 (LIST_IDF_DEC)
 
@@ -824,7 +814,7 @@ state 59
    40 DEC: TYPE idf mc_dimension po . cst_int pf pvg DEC
    41    | TYPE idf mc_dimension po . cst_int vig cst_int pf pvg DEC
 
-    cst_int  shift, and go to state 86
+    cst_int  shift, and go to state 81
 
 
 state 60
@@ -838,7 +828,7 @@ state 61
 
    37 INST_READ: mc_read po idf . pf pvg
 
-    pf  shift, and go to state 87
+    pf  shift, and go to state 82
 
 
 state 62
@@ -846,7 +836,7 @@ state 62
    33 SMTH: idf . vig SMTH
    35     | idf .
 
-    vig  shift, and go to state 88
+    vig  shift, and go to state 83
 
     $default  reduce using rule 35 (SMTH)
 
@@ -856,7 +846,7 @@ state 63
    34 SMTH: cst_chaine . vig SMTH
    36     | cst_chaine .
 
-    vig  shift, and go to state 89
+    vig  shift, and go to state 84
 
     $default  reduce using rule 36 (SMTH)
 
@@ -865,141 +855,130 @@ state 64
 
    32 INST_WRITE: mc_write po SMTH . pf pvg
 
-    pf  shift, and go to state 90
+    pf  shift, and go to state 85
 
 
 state 65
 
-   74 OPERANDE: idf .
-   75         | idf . po INDICE pf
-   76         | idf . po idf vig idf pf
+   71 OPERANDE: idf .
+   72         | idf . po INDICE pf
+   73         | idf . po idf vig idf pf
 
-    po  shift, and go to state 91
+    po  shift, and go to state 86
 
-    $default  reduce using rule 74 (OPERANDE)
+    $default  reduce using rule 71 (OPERANDE)
 
 
 state 66
 
-   77 OPERANDE: cst_int .
+   69 EXP_ARTH: po . EXP_ARTH pf
 
-    $default  reduce using rule 77 (OPERANDE)
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
+
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 87
+    OPERANDE  go to state 71
 
 
 state 67
 
-   78 OPERANDE: cst_real .
+   75 OPERANDE: mc_true .
 
-    $default  reduce using rule 78 (OPERANDE)
+    $default  reduce using rule 75 (OPERANDE)
 
 
 state 68
 
-   72 EXP_ARTH: po . EXP_ARTH pf
+   76 OPERANDE: mc_false .
 
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 92
-    OPERANDE  go to state 73
+    $default  reduce using rule 76 (OPERANDE)
 
 
 state 69
 
-   79 OPERANDE: cst_chaine .
+   74 OPERANDE: CST .
 
-    $default  reduce using rule 79 (OPERANDE)
+    $default  reduce using rule 74 (OPERANDE)
 
 
 state 70
 
-   80 OPERANDE: mc_true .
+   17 INST_COND: mc_if po EXP_ARTH . pf mc_then LIST_INST ELSE mc_endif
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    $default  reduce using rule 80 (OPERANDE)
+    mul     shift, and go to state 88
+    pf      shift, and go to state 89
+    moin    shift, and go to state 90
+    plus    shift, and go to state 91
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
 
 state 71
 
-   81 OPERANDE: mc_false .
+   70 EXP_ARTH: OPERANDE .
 
-    $default  reduce using rule 81 (OPERANDE)
+    $default  reduce using rule 70 (EXP_ARTH)
 
 
 state 72
 
-   17 INST_COND: mc_if po EXP_ARTH . pf mc_then LIST_INST ELSE mc_endif
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   18 INST_COND: mc_dowhile po EXP_ARTH . pf LIST_INST mc_enddo pvg
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mul     shift, and go to state 93
-    pf      shift, and go to state 94
-    moin    shift, and go to state 95
-    plus    shift, and go to state 96
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mul     shift, and go to state 88
+    pf      shift, and go to state 101
+    moin    shift, and go to state 90
+    plus    shift, and go to state 91
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
 
 state 73
-
-   73 EXP_ARTH: OPERANDE .
-
-    $default  reduce using rule 73 (EXP_ARTH)
-
-
-state 74
-
-   18 INST_COND: mc_dowhile po EXP_ARTH . pf LIST_INST mc_enddo pvg
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mul     shift, and go to state 93
-    pf      shift, and go to state 106
-    moin    shift, and go to state 95
-    plus    shift, and go to state 96
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
-
-
-state 75
 
    22 VAR_LIST: idf . vig VAR_LIST
    23         | idf . po cst_int pf vig VAR_LIST
@@ -1008,432 +987,411 @@ state 75
    26         | idf . po cst_int pf
    27         | idf . po cst_real pf
 
-    vig  shift, and go to state 107
-    po   shift, and go to state 108
+    vig  shift, and go to state 102
+    po   shift, and go to state 103
 
     $default  reduce using rule 25 (VAR_LIST)
 
 
-state 76
+state 74
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST . pf vig po VAR_LIST pf pvg
 
-    pf  shift, and go to state 109
+    pf  shift, and go to state 104
+
+
+state 75
+
+   29 INST_CALL: idf aff mc_call . idf po IDF_LIST pf pvg
+
+    idf  shift, and go to state 105
+
+
+state 76
+
+   56 INST_AFF: idf aff EXP_ARTH . pvg
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+
+    mul     shift, and go to state 88
+    pvg     shift, and go to state 106
+    moin    shift, and go to state 90
+    plus    shift, and go to state 91
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
 
 state 77
 
-   29 INST_CALL: idf aff mc_call . idf po IDF_LIST pf pvg
+    7 ROUTINE: TYPE mc_routine idf po ARGS pf DEC LIST_INST . mc_endr ROUTINE
 
-    idf  shift, and go to state 110
+    mc_endr  shift, and go to state 107
 
 
 state 78
 
-   57 INST_AFF: idf aff cst_int .
-   77 OPERANDE: cst_int .
-
-    mc_end          reduce using rule 57 (INST_AFF)
-    mc_endr         reduce using rule 57 (INST_AFF)
-    mc_read         reduce using rule 57 (INST_AFF)
-    mc_write        reduce using rule 57 (INST_AFF)
-    mc_if           reduce using rule 57 (INST_AFF)
-    mc_else         reduce using rule 57 (INST_AFF)
-    mc_endif        reduce using rule 57 (INST_AFF)
-    mc_dowhile      reduce using rule 57 (INST_AFF)
-    mc_enddo        reduce using rule 57 (INST_AFF)
-    mc_equivalence  reduce using rule 57 (INST_AFF)
-    idf             reduce using rule 57 (INST_AFF)
-    $default        reduce using rule 77 (OPERANDE)
-
-
-state 79
-
-   58 INST_AFF: idf aff cst_real .
-   78 OPERANDE: cst_real .
-
-    mc_end          reduce using rule 58 (INST_AFF)
-    mc_endr         reduce using rule 58 (INST_AFF)
-    mc_read         reduce using rule 58 (INST_AFF)
-    mc_write        reduce using rule 58 (INST_AFF)
-    mc_if           reduce using rule 58 (INST_AFF)
-    mc_else         reduce using rule 58 (INST_AFF)
-    mc_endif        reduce using rule 58 (INST_AFF)
-    mc_dowhile      reduce using rule 58 (INST_AFF)
-    mc_enddo        reduce using rule 58 (INST_AFF)
-    mc_equivalence  reduce using rule 58 (INST_AFF)
-    idf             reduce using rule 58 (INST_AFF)
-    $default        reduce using rule 78 (OPERANDE)
-
-
-state 80
-
-   59 INST_AFF: idf aff cst_chaine .
-   79 OPERANDE: cst_chaine .
-
-    mc_end          reduce using rule 59 (INST_AFF)
-    mc_endr         reduce using rule 59 (INST_AFF)
-    mc_read         reduce using rule 59 (INST_AFF)
-    mc_write        reduce using rule 59 (INST_AFF)
-    mc_if           reduce using rule 59 (INST_AFF)
-    mc_else         reduce using rule 59 (INST_AFF)
-    mc_endif        reduce using rule 59 (INST_AFF)
-    mc_dowhile      reduce using rule 59 (INST_AFF)
-    mc_enddo        reduce using rule 59 (INST_AFF)
-    mc_equivalence  reduce using rule 59 (INST_AFF)
-    idf             reduce using rule 59 (INST_AFF)
-    $default        reduce using rule 79 (OPERANDE)
-
-
-state 81
-
-   56 INST_AFF: idf aff EXP_ARTH . pvg
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mul     shift, and go to state 93
-    pvg     shift, and go to state 111
-    moin    shift, and go to state 95
-    plus    shift, and go to state 96
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
-
-
-state 82
-
-    7 ROUTINE: TYPE mc_routine idf po ARGS pf DEC LIST_INST . mc_endr ROUTINE
-
-    mc_endr  shift, and go to state 112
-
-
-state 83
-
    50 LIST_IDF_DEC: idf mul cst_int aff . cst_chaine vig LIST_IDF_DEC
    51             | idf mul cst_int aff . cst_chaine
 
-    cst_chaine  shift, and go to state 113
+    cst_chaine  shift, and go to state 108
 
 
-state 84
+state 79
 
    48 LIST_IDF_DEC: idf mul cst_int vig . LIST_IDF_DEC
 
     idf  shift, and go to state 57
 
-    LIST_IDF_DEC  go to state 114
+    LIST_IDF_DEC  go to state 109
 
 
-state 85
+state 80
 
    46 LIST_IDF_DEC: idf aff CST vig . LIST_IDF_DEC
 
     idf  shift, and go to state 57
 
-    LIST_IDF_DEC  go to state 115
+    LIST_IDF_DEC  go to state 110
 
 
-state 86
+state 81
 
    40 DEC: TYPE idf mc_dimension po cst_int . pf pvg DEC
    41    | TYPE idf mc_dimension po cst_int . vig cst_int pf pvg DEC
 
-    vig  shift, and go to state 116
-    pf   shift, and go to state 117
+    vig  shift, and go to state 111
+    pf   shift, and go to state 112
 
 
-state 87
+state 82
 
    37 INST_READ: mc_read po idf pf . pvg
 
-    pvg  shift, and go to state 118
+    pvg  shift, and go to state 113
 
 
-state 88
+state 83
 
    33 SMTH: idf vig . SMTH
 
     idf         shift, and go to state 62
     cst_chaine  shift, and go to state 63
 
-    SMTH  go to state 119
+    SMTH  go to state 114
 
 
-state 89
+state 84
 
    34 SMTH: cst_chaine vig . SMTH
 
     idf         shift, and go to state 62
     cst_chaine  shift, and go to state 63
 
-    SMTH  go to state 120
+    SMTH  go to state 115
+
+
+state 85
+
+   32 INST_WRITE: mc_write po SMTH pf . pvg
+
+    pvg  shift, and go to state 116
+
+
+state 86
+
+   72 OPERANDE: idf po . INDICE pf
+   73         | idf po . idf vig idf pf
+
+    idf      shift, and go to state 117
+    cst_int  shift, and go to state 118
+
+    INDICE  go to state 119
+
+
+state 87
+
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+   69         | po EXP_ARTH . pf
+
+    mul     shift, and go to state 88
+    pf      shift, and go to state 120
+    moin    shift, and go to state 90
+    plus    shift, and go to state 91
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
+
+
+state 88
+
+   59 EXP_ARTH: EXP_ARTH mul . EXP_ARTH
+
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
+
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 121
+    OPERANDE  go to state 71
+
+
+state 89
+
+   17 INST_COND: mc_if po EXP_ARTH pf . mc_then LIST_INST ELSE mc_endif
+
+    mc_then  shift, and go to state 122
 
 
 state 90
 
-   32 INST_WRITE: mc_write po SMTH pf . pvg
+   58 EXP_ARTH: EXP_ARTH moin . EXP_ARTH
 
-    pvg  shift, and go to state 121
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
+
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 123
+    OPERANDE  go to state 71
 
 
 state 91
 
-   75 OPERANDE: idf po . INDICE pf
-   76         | idf po . idf vig idf pf
+   57 EXP_ARTH: EXP_ARTH plus . EXP_ARTH
 
-    idf      shift, and go to state 122
-    cst_int  shift, and go to state 123
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
-    INDICE  go to state 124
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 124
+    OPERANDE  go to state 71
 
 
 state 92
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-   72         | po EXP_ARTH . pf
+   60 EXP_ARTH: EXP_ARTH divsep . EXP_ARTH
 
-    mul     shift, and go to state 93
-    pf      shift, and go to state 125
-    moin    shift, and go to state 95
-    plus    shift, and go to state 96
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
+
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 125
+    OPERANDE  go to state 71
 
 
 state 93
 
-   62 EXP_ARTH: EXP_ARTH mul . EXP_ARTH
+   61 EXP_ARTH: EXP_ARTH mc_ge . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 126
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 94
 
-   17 INST_COND: mc_if po EXP_ARTH pf . mc_then LIST_INST ELSE mc_endif
+   62 EXP_ARTH: EXP_ARTH mc_gt . EXP_ARTH
 
-    mc_then  shift, and go to state 127
+    idf         shift, and go to state 65
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
+
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
+    EXP_ARTH  go to state 127
+    OPERANDE  go to state 71
 
 
 state 95
 
-   61 EXP_ARTH: EXP_ARTH moin . EXP_ARTH
+   63 EXP_ARTH: EXP_ARTH mc_le . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 128
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 96
 
-   60 EXP_ARTH: EXP_ARTH plus . EXP_ARTH
+   64 EXP_ARTH: EXP_ARTH mc_lt . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 129
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 97
 
-   63 EXP_ARTH: EXP_ARTH divsep . EXP_ARTH
+   65 EXP_ARTH: EXP_ARTH mc_ne . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 130
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 98
 
-   64 EXP_ARTH: EXP_ARTH mc_ge . EXP_ARTH
+   66 EXP_ARTH: EXP_ARTH mc_eq . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 131
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 99
 
-   65 EXP_ARTH: EXP_ARTH mc_gt . EXP_ARTH
+   67 EXP_ARTH: EXP_ARTH mc_and . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 132
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 100
 
-   66 EXP_ARTH: EXP_ARTH mc_le . EXP_ARTH
+   68 EXP_ARTH: EXP_ARTH mc_or . EXP_ARTH
 
     idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
+    cst_int     shift, and go to state 53
+    cst_real    shift, and go to state 54
+    po          shift, and go to state 66
+    cst_chaine  shift, and go to state 55
+    mc_true     shift, and go to state 67
+    mc_false    shift, and go to state 68
 
+    $default  reduce using rule 55 (CST)
+
+    CST       go to state 69
     EXP_ARTH  go to state 133
-    OPERANDE  go to state 73
+    OPERANDE  go to state 71
 
 
 state 101
-
-   67 EXP_ARTH: EXP_ARTH mc_lt . EXP_ARTH
-
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 134
-    OPERANDE  go to state 73
-
-
-state 102
-
-   68 EXP_ARTH: EXP_ARTH mc_ne . EXP_ARTH
-
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 135
-    OPERANDE  go to state 73
-
-
-state 103
-
-   69 EXP_ARTH: EXP_ARTH mc_eq . EXP_ARTH
-
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 136
-    OPERANDE  go to state 73
-
-
-state 104
-
-   70 EXP_ARTH: EXP_ARTH mc_and . EXP_ARTH
-
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 137
-    OPERANDE  go to state 73
-
-
-state 105
-
-   71 EXP_ARTH: EXP_ARTH mc_or . EXP_ARTH
-
-    idf         shift, and go to state 65
-    cst_int     shift, and go to state 66
-    cst_real    shift, and go to state 67
-    po          shift, and go to state 68
-    cst_chaine  shift, and go to state 69
-    mc_true     shift, and go to state 70
-    mc_false    shift, and go to state 71
-
-    EXP_ARTH  go to state 138
-    OPERANDE  go to state 73
-
-
-state 106
 
    18 INST_COND: mc_dowhile po EXP_ARTH pf . LIST_INST mc_enddo pvg
 
@@ -1452,54 +1410,54 @@ state 106
     INST_CALL         go to state 30
     INST_WRITE        go to state 31
     INST_READ         go to state 32
-    LIST_INST         go to state 139
+    LIST_INST         go to state 134
     INST_AFF          go to state 34
 
 
-state 107
+state 102
 
    22 VAR_LIST: idf vig . VAR_LIST
 
-    idf  shift, and go to state 75
+    idf  shift, and go to state 73
 
     $default  reduce using rule 28 (VAR_LIST)
 
-    VAR_LIST  go to state 140
+    VAR_LIST  go to state 135
 
 
-state 108
+state 103
 
    23 VAR_LIST: idf po . cst_int pf vig VAR_LIST
    24         | idf po . cst_real pf vig VAR_LIST
    26         | idf po . cst_int pf
    27         | idf po . cst_real pf
 
-    cst_int   shift, and go to state 141
-    cst_real  shift, and go to state 142
+    cst_int   shift, and go to state 136
+    cst_real  shift, and go to state 137
 
 
-state 109
+state 104
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf . vig po VAR_LIST pf pvg
 
-    vig  shift, and go to state 143
+    vig  shift, and go to state 138
 
 
-state 110
+state 105
 
    29 INST_CALL: idf aff mc_call idf . po IDF_LIST pf pvg
 
-    po  shift, and go to state 144
+    po  shift, and go to state 139
 
 
-state 111
+state 106
 
    56 INST_AFF: idf aff EXP_ARTH pvg .
 
     $default  reduce using rule 56 (INST_AFF)
 
 
-state 112
+state 107
 
     7 ROUTINE: TYPE mc_routine idf po ARGS pf DEC LIST_INST mc_endr . ROUTINE
 
@@ -1511,140 +1469,140 @@ state 112
     $default  reduce using rule 8 (ROUTINE)
 
     TYPE     go to state 6
-    ROUTINE  go to state 145
+    ROUTINE  go to state 140
 
 
-state 113
+state 108
 
    50 LIST_IDF_DEC: idf mul cst_int aff cst_chaine . vig LIST_IDF_DEC
    51             | idf mul cst_int aff cst_chaine .
 
-    vig  shift, and go to state 146
+    vig  shift, and go to state 141
 
     $default  reduce using rule 51 (LIST_IDF_DEC)
 
 
-state 114
+state 109
 
    48 LIST_IDF_DEC: idf mul cst_int vig LIST_IDF_DEC .
 
     $default  reduce using rule 48 (LIST_IDF_DEC)
 
 
-state 115
+state 110
 
    46 LIST_IDF_DEC: idf aff CST vig LIST_IDF_DEC .
 
     $default  reduce using rule 46 (LIST_IDF_DEC)
 
 
-state 116
+state 111
 
    41 DEC: TYPE idf mc_dimension po cst_int vig . cst_int pf pvg DEC
 
-    cst_int  shift, and go to state 147
+    cst_int  shift, and go to state 142
 
 
-state 117
+state 112
 
    40 DEC: TYPE idf mc_dimension po cst_int pf . pvg DEC
 
-    pvg  shift, and go to state 148
+    pvg  shift, and go to state 143
 
 
-state 118
+state 113
 
    37 INST_READ: mc_read po idf pf pvg .
 
     $default  reduce using rule 37 (INST_READ)
 
 
-state 119
+state 114
 
    33 SMTH: idf vig SMTH .
 
     $default  reduce using rule 33 (SMTH)
 
 
-state 120
+state 115
 
    34 SMTH: cst_chaine vig SMTH .
 
     $default  reduce using rule 34 (SMTH)
 
 
-state 121
+state 116
 
    32 INST_WRITE: mc_write po SMTH pf pvg .
 
     $default  reduce using rule 32 (INST_WRITE)
 
 
+state 117
+
+   73 OPERANDE: idf po idf . vig idf pf
+   77 INDICE: idf .
+   79       | idf . vig cst_int
+
+    vig  shift, and go to state 144
+
+    $default  reduce using rule 77 (INDICE)
+
+
+state 118
+
+   78 INDICE: cst_int .
+   80       | cst_int . vig cst_int
+   81       | cst_int . vig idf
+
+    vig  shift, and go to state 145
+
+    $default  reduce using rule 78 (INDICE)
+
+
+state 119
+
+   72 OPERANDE: idf po INDICE . pf
+
+    pf  shift, and go to state 146
+
+
+state 120
+
+   69 EXP_ARTH: po EXP_ARTH pf .
+
+    $default  reduce using rule 69 (EXP_ARTH)
+
+
+state 121
+
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   59         | EXP_ARTH mul EXP_ARTH .
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
+
+    $default  reduce using rule 59 (EXP_ARTH)
+
+
 state 122
-
-   76 OPERANDE: idf po idf . vig idf pf
-   82 INDICE: idf .
-   84       | idf . vig cst_int
-
-    vig  shift, and go to state 149
-
-    $default  reduce using rule 82 (INDICE)
-
-
-state 123
-
-   83 INDICE: cst_int .
-   85       | cst_int . vig cst_int
-   86       | cst_int . vig idf
-
-    vig  shift, and go to state 150
-
-    $default  reduce using rule 83 (INDICE)
-
-
-state 124
-
-   75 OPERANDE: idf po INDICE . pf
-
-    pf  shift, and go to state 151
-
-
-state 125
-
-   72 EXP_ARTH: po EXP_ARTH pf .
-
-    $default  reduce using rule 72 (EXP_ARTH)
-
-
-state 126
-
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   62         | EXP_ARTH mul EXP_ARTH .
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
-
-    $default  reduce using rule 62 (EXP_ARTH)
-
-
-state 127
 
    17 INST_COND: mc_if po EXP_ARTH pf mc_then . LIST_INST ELSE mc_endif
 
@@ -1663,338 +1621,338 @@ state 127
     INST_CALL         go to state 30
     INST_WRITE        go to state 31
     INST_READ         go to state 32
-    LIST_INST         go to state 152
+    LIST_INST         go to state 147
     INST_AFF          go to state 34
 
 
-state 128
+state 123
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   61         | EXP_ARTH moin EXP_ARTH .
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   58         | EXP_ARTH moin EXP_ARTH .
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mul     shift, and go to state 93
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mul     shift, and go to state 88
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
-    $default  reduce using rule 61 (EXP_ARTH)
+    $default  reduce using rule 58 (EXP_ARTH)
 
 
-state 129
+state 124
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   60         | EXP_ARTH plus EXP_ARTH .
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   57         | EXP_ARTH plus EXP_ARTH .
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mul     shift, and go to state 93
-    divsep  shift, and go to state 97
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mul     shift, and go to state 88
+    divsep  shift, and go to state 92
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
+
+    $default  reduce using rule 57 (EXP_ARTH)
+
+
+state 125
+
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   60         | EXP_ARTH divsep EXP_ARTH .
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+
+    mc_ge   shift, and go to state 93
+    mc_gt   shift, and go to state 94
+    mc_le   shift, and go to state 95
+    mc_lt   shift, and go to state 96
+    mc_ne   shift, and go to state 97
+    mc_eq   shift, and go to state 98
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
     $default  reduce using rule 60 (EXP_ARTH)
 
 
-state 130
+state 126
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   63         | EXP_ARTH divsep EXP_ARTH .
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   61         | EXP_ARTH mc_ge EXP_ARTH .
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mc_ge   shift, and go to state 98
-    mc_gt   shift, and go to state 99
-    mc_le   shift, and go to state 100
-    mc_lt   shift, and go to state 101
-    mc_ne   shift, and go to state 102
-    mc_eq   shift, and go to state 103
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
+
+    $default  reduce using rule 61 (EXP_ARTH)
+
+
+state 127
+
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   62         | EXP_ARTH mc_gt EXP_ARTH .
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
+
+    $default  reduce using rule 62 (EXP_ARTH)
+
+
+state 128
+
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   63         | EXP_ARTH mc_le EXP_ARTH .
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
     $default  reduce using rule 63 (EXP_ARTH)
 
 
-state 131
+state 129
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   64         | EXP_ARTH mc_ge EXP_ARTH .
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   64         | EXP_ARTH mc_lt EXP_ARTH .
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
     $default  reduce using rule 64 (EXP_ARTH)
 
 
-state 132
+state 130
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   65         | EXP_ARTH mc_gt EXP_ARTH .
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   65         | EXP_ARTH mc_ne EXP_ARTH .
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
     $default  reduce using rule 65 (EXP_ARTH)
 
 
-state 133
+state 131
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   66         | EXP_ARTH mc_le EXP_ARTH .
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   66         | EXP_ARTH mc_eq EXP_ARTH .
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+    mc_and  shift, and go to state 99
+    mc_or   shift, and go to state 100
 
     $default  reduce using rule 66 (EXP_ARTH)
 
 
-state 134
+state 132
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   67         | EXP_ARTH mc_lt EXP_ARTH .
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   67         | EXP_ARTH mc_and EXP_ARTH .
+   68         | EXP_ARTH . mc_or EXP_ARTH
 
     $default  reduce using rule 67 (EXP_ARTH)
 
 
-state 135
+state 133
 
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   68         | EXP_ARTH mc_ne EXP_ARTH .
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
+   57 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
+   58         | EXP_ARTH . moin EXP_ARTH
+   59         | EXP_ARTH . mul EXP_ARTH
+   60         | EXP_ARTH . divsep EXP_ARTH
+   61         | EXP_ARTH . mc_ge EXP_ARTH
+   62         | EXP_ARTH . mc_gt EXP_ARTH
+   63         | EXP_ARTH . mc_le EXP_ARTH
+   64         | EXP_ARTH . mc_lt EXP_ARTH
+   65         | EXP_ARTH . mc_ne EXP_ARTH
+   66         | EXP_ARTH . mc_eq EXP_ARTH
+   67         | EXP_ARTH . mc_and EXP_ARTH
+   68         | EXP_ARTH . mc_or EXP_ARTH
+   68         | EXP_ARTH mc_or EXP_ARTH .
 
     $default  reduce using rule 68 (EXP_ARTH)
 
 
-state 136
-
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   69         | EXP_ARTH mc_eq EXP_ARTH .
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    mc_and  shift, and go to state 104
-    mc_or   shift, and go to state 105
-
-    $default  reduce using rule 69 (EXP_ARTH)
-
-
-state 137
-
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   70         | EXP_ARTH mc_and EXP_ARTH .
-   71         | EXP_ARTH . mc_or EXP_ARTH
-
-    $default  reduce using rule 70 (EXP_ARTH)
-
-
-state 138
-
-   60 EXP_ARTH: EXP_ARTH . plus EXP_ARTH
-   61         | EXP_ARTH . moin EXP_ARTH
-   62         | EXP_ARTH . mul EXP_ARTH
-   63         | EXP_ARTH . divsep EXP_ARTH
-   64         | EXP_ARTH . mc_ge EXP_ARTH
-   65         | EXP_ARTH . mc_gt EXP_ARTH
-   66         | EXP_ARTH . mc_le EXP_ARTH
-   67         | EXP_ARTH . mc_lt EXP_ARTH
-   68         | EXP_ARTH . mc_ne EXP_ARTH
-   69         | EXP_ARTH . mc_eq EXP_ARTH
-   70         | EXP_ARTH . mc_and EXP_ARTH
-   71         | EXP_ARTH . mc_or EXP_ARTH
-   71         | EXP_ARTH mc_or EXP_ARTH .
-
-    $default  reduce using rule 71 (EXP_ARTH)
-
-
-state 139
+state 134
 
    18 INST_COND: mc_dowhile po EXP_ARTH pf LIST_INST . mc_enddo pvg
 
-    mc_enddo  shift, and go to state 153
+    mc_enddo  shift, and go to state 148
 
 
-state 140
+state 135
 
    22 VAR_LIST: idf vig VAR_LIST .
 
     $default  reduce using rule 22 (VAR_LIST)
 
 
-state 141
+state 136
 
    23 VAR_LIST: idf po cst_int . pf vig VAR_LIST
    26         | idf po cst_int . pf
 
-    pf  shift, and go to state 154
+    pf  shift, and go to state 149
 
 
-state 142
+state 137
 
    24 VAR_LIST: idf po cst_real . pf vig VAR_LIST
    27         | idf po cst_real . pf
 
-    pf  shift, and go to state 155
+    pf  shift, and go to state 150
 
 
-state 143
+state 138
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf vig . po VAR_LIST pf pvg
 
-    po  shift, and go to state 156
+    po  shift, and go to state 151
 
 
-state 144
+state 139
 
    29 INST_CALL: idf aff mc_call idf po . IDF_LIST pf pvg
 
-    idf  shift, and go to state 157
+    idf  shift, and go to state 152
 
-    IDF_LIST  go to state 158
+    IDF_LIST  go to state 153
 
 
-state 145
+state 140
 
     7 ROUTINE: TYPE mc_routine idf po ARGS pf DEC LIST_INST mc_endr ROUTINE .
 
     $default  reduce using rule 7 (ROUTINE)
 
 
-state 146
+state 141
 
    50 LIST_IDF_DEC: idf mul cst_int aff cst_chaine vig . LIST_IDF_DEC
 
     idf  shift, and go to state 57
 
-    LIST_IDF_DEC  go to state 159
+    LIST_IDF_DEC  go to state 154
 
 
-state 147
+state 142
 
    41 DEC: TYPE idf mc_dimension po cst_int vig cst_int . pf pvg DEC
 
-    pf  shift, and go to state 160
+    pf  shift, and go to state 155
 
 
-state 148
+state 143
 
    40 DEC: TYPE idf mc_dimension po cst_int pf pvg . DEC
 
@@ -2006,150 +1964,150 @@ state 148
     $default  reduce using rule 43 (DEC)
 
     TYPE  go to state 15
-    DEC   go to state 161
+    DEC   go to state 156
+
+
+state 144
+
+   73 OPERANDE: idf po idf vig . idf pf
+   79 INDICE: idf vig . cst_int
+
+    idf      shift, and go to state 157
+    cst_int  shift, and go to state 158
+
+
+state 145
+
+   80 INDICE: cst_int vig . cst_int
+   81       | cst_int vig . idf
+
+    idf      shift, and go to state 159
+    cst_int  shift, and go to state 160
+
+
+state 146
+
+   72 OPERANDE: idf po INDICE pf .
+
+    $default  reduce using rule 72 (OPERANDE)
+
+
+state 147
+
+   17 INST_COND: mc_if po EXP_ARTH pf mc_then LIST_INST . ELSE mc_endif
+
+    mc_else  shift, and go to state 161
+
+    $default  reduce using rule 20 (ELSE)
+
+    ELSE  go to state 162
+
+
+state 148
+
+   18 INST_COND: mc_dowhile po EXP_ARTH pf LIST_INST mc_enddo . pvg
+
+    pvg  shift, and go to state 163
 
 
 state 149
 
-   76 OPERANDE: idf po idf vig . idf pf
-   84 INDICE: idf vig . cst_int
-
-    idf      shift, and go to state 162
-    cst_int  shift, and go to state 163
-
-
-state 150
-
-   85 INDICE: cst_int vig . cst_int
-   86       | cst_int vig . idf
-
-    idf      shift, and go to state 164
-    cst_int  shift, and go to state 165
-
-
-state 151
-
-   75 OPERANDE: idf po INDICE pf .
-
-    $default  reduce using rule 75 (OPERANDE)
-
-
-state 152
-
-   17 INST_COND: mc_if po EXP_ARTH pf mc_then LIST_INST . ELSE mc_endif
-
-    mc_else  shift, and go to state 166
-
-    $default  reduce using rule 20 (ELSE)
-
-    ELSE  go to state 167
-
-
-state 153
-
-   18 INST_COND: mc_dowhile po EXP_ARTH pf LIST_INST mc_enddo . pvg
-
-    pvg  shift, and go to state 168
-
-
-state 154
-
    23 VAR_LIST: idf po cst_int pf . vig VAR_LIST
    26         | idf po cst_int pf .
 
-    vig  shift, and go to state 169
+    vig  shift, and go to state 164
 
     $default  reduce using rule 26 (VAR_LIST)
 
 
-state 155
+state 150
 
    24 VAR_LIST: idf po cst_real pf . vig VAR_LIST
    27         | idf po cst_real pf .
 
-    vig  shift, and go to state 170
+    vig  shift, and go to state 165
 
     $default  reduce using rule 27 (VAR_LIST)
 
 
-state 156
+state 151
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf vig po . VAR_LIST pf pvg
 
-    idf  shift, and go to state 75
+    idf  shift, and go to state 73
 
     $default  reduce using rule 28 (VAR_LIST)
 
-    VAR_LIST  go to state 171
+    VAR_LIST  go to state 166
 
 
-state 157
+state 152
 
    30 IDF_LIST: idf . vig IDF_LIST
    31         | idf .
 
-    vig  shift, and go to state 172
+    vig  shift, and go to state 167
 
     $default  reduce using rule 31 (IDF_LIST)
 
 
-state 158
+state 153
 
    29 INST_CALL: idf aff mc_call idf po IDF_LIST . pf pvg
 
-    pf  shift, and go to state 173
+    pf  shift, and go to state 168
 
 
-state 159
+state 154
 
    50 LIST_IDF_DEC: idf mul cst_int aff cst_chaine vig LIST_IDF_DEC .
 
     $default  reduce using rule 50 (LIST_IDF_DEC)
 
 
-state 160
+state 155
 
    41 DEC: TYPE idf mc_dimension po cst_int vig cst_int pf . pvg DEC
 
-    pvg  shift, and go to state 174
+    pvg  shift, and go to state 169
 
 
-state 161
+state 156
 
    40 DEC: TYPE idf mc_dimension po cst_int pf pvg DEC .
 
     $default  reduce using rule 40 (DEC)
 
 
-state 162
+state 157
 
-   76 OPERANDE: idf po idf vig idf . pf
+   73 OPERANDE: idf po idf vig idf . pf
 
-    pf  shift, and go to state 175
-
-
-state 163
-
-   84 INDICE: idf vig cst_int .
-
-    $default  reduce using rule 84 (INDICE)
+    pf  shift, and go to state 170
 
 
-state 164
+state 158
 
-   86 INDICE: cst_int vig idf .
+   79 INDICE: idf vig cst_int .
 
-    $default  reduce using rule 86 (INDICE)
-
-
-state 165
-
-   85 INDICE: cst_int vig cst_int .
-
-    $default  reduce using rule 85 (INDICE)
+    $default  reduce using rule 79 (INDICE)
 
 
-state 166
+state 159
+
+   81 INDICE: cst_int vig idf .
+
+    $default  reduce using rule 81 (INDICE)
+
+
+state 160
+
+   80 INDICE: cst_int vig cst_int .
+
+    $default  reduce using rule 80 (INDICE)
+
+
+state 161
 
    19 ELSE: mc_else . LIST_INST
 
@@ -2168,70 +2126,70 @@ state 166
     INST_CALL         go to state 30
     INST_WRITE        go to state 31
     INST_READ         go to state 32
-    LIST_INST         go to state 176
+    LIST_INST         go to state 171
     INST_AFF          go to state 34
 
 
-state 167
+state 162
 
    17 INST_COND: mc_if po EXP_ARTH pf mc_then LIST_INST ELSE . mc_endif
 
-    mc_endif  shift, and go to state 177
+    mc_endif  shift, and go to state 172
 
 
-state 168
+state 163
 
    18 INST_COND: mc_dowhile po EXP_ARTH pf LIST_INST mc_enddo pvg .
 
     $default  reduce using rule 18 (INST_COND)
 
 
-state 169
+state 164
 
    23 VAR_LIST: idf po cst_int pf vig . VAR_LIST
 
-    idf  shift, and go to state 75
+    idf  shift, and go to state 73
 
     $default  reduce using rule 28 (VAR_LIST)
 
-    VAR_LIST  go to state 178
+    VAR_LIST  go to state 173
 
 
-state 170
+state 165
 
    24 VAR_LIST: idf po cst_real pf vig . VAR_LIST
 
-    idf  shift, and go to state 75
+    idf  shift, and go to state 73
 
     $default  reduce using rule 28 (VAR_LIST)
 
-    VAR_LIST  go to state 179
+    VAR_LIST  go to state 174
 
 
-state 171
+state 166
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf vig po VAR_LIST . pf pvg
 
-    pf  shift, and go to state 180
+    pf  shift, and go to state 175
 
 
-state 172
+state 167
 
    30 IDF_LIST: idf vig . IDF_LIST
 
-    idf  shift, and go to state 157
+    idf  shift, and go to state 152
 
-    IDF_LIST  go to state 181
+    IDF_LIST  go to state 176
 
 
-state 173
+state 168
 
    29 INST_CALL: idf aff mc_call idf po IDF_LIST pf . pvg
 
-    pvg  shift, and go to state 182
+    pvg  shift, and go to state 177
 
 
-state 174
+state 169
 
    41 DEC: TYPE idf mc_dimension po cst_int vig cst_int pf pvg . DEC
 
@@ -2243,73 +2201,73 @@ state 174
     $default  reduce using rule 43 (DEC)
 
     TYPE  go to state 15
-    DEC   go to state 183
+    DEC   go to state 178
 
 
-state 175
+state 170
 
-   76 OPERANDE: idf po idf vig idf pf .
+   73 OPERANDE: idf po idf vig idf pf .
 
-    $default  reduce using rule 76 (OPERANDE)
+    $default  reduce using rule 73 (OPERANDE)
 
 
-state 176
+state 171
 
    19 ELSE: mc_else LIST_INST .
 
     $default  reduce using rule 19 (ELSE)
 
 
-state 177
+state 172
 
    17 INST_COND: mc_if po EXP_ARTH pf mc_then LIST_INST ELSE mc_endif .
 
     $default  reduce using rule 17 (INST_COND)
 
 
-state 178
+state 173
 
    23 VAR_LIST: idf po cst_int pf vig VAR_LIST .
 
     $default  reduce using rule 23 (VAR_LIST)
 
 
-state 179
+state 174
 
    24 VAR_LIST: idf po cst_real pf vig VAR_LIST .
 
     $default  reduce using rule 24 (VAR_LIST)
 
 
-state 180
+state 175
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf vig po VAR_LIST pf . pvg
 
-    pvg  shift, and go to state 184
+    pvg  shift, and go to state 179
 
 
-state 181
+state 176
 
    30 IDF_LIST: idf vig IDF_LIST .
 
     $default  reduce using rule 30 (IDF_LIST)
 
 
-state 182
+state 177
 
    29 INST_CALL: idf aff mc_call idf po IDF_LIST pf pvg .
 
     $default  reduce using rule 29 (INST_CALL)
 
 
-state 183
+state 178
 
    41 DEC: TYPE idf mc_dimension po cst_int vig cst_int pf pvg DEC .
 
     $default  reduce using rule 41 (DEC)
 
 
-state 184
+state 179
 
    21 INST_EQUIVALENCE: mc_equivalence po VAR_LIST pf vig po VAR_LIST pf pvg .
 

@@ -25,6 +25,7 @@ typedef struct elt {
     listms svt;
 } nouedms;
 
+
 list tab = NULL;
 listms tabm = NULL;
 listms tabs = NULL;
@@ -121,6 +122,9 @@ void inserer(char entite[], char code[], char type[], float val, int i, int y)
     break;
     }
 }
+
+
+
 
 void rechercher(char entite[], char code[], char type[], float val, int y)
 { 
@@ -233,4 +237,109 @@ void afficher()
         }
         tmp2 = tmp2->svt;
     }
+}
+list chercheDansListe(list t , int pos){
+
+    for(int i=0 ; i<pos ; i++) {
+        t = t->svt ;
+    }
+    return t ;
+
+}
+
+/***Step 1 : la fonction qui retourne la position d'un IDF  ***/
+
+int rechercherIDF(char entite[]){
+
+  int i=0;
+  list tmp = tab ;
+  while( tmp != NULL ){
+    
+    if (strcmp(entite,tmp->name)==0){return i;}  //retourne la position de l'IDF
+    else i++;
+    tmp = tmp->svt ;
+  } 
+  return -1;//si l'IDF n'existe pas
+}
+
+/***Step 2 : la fonction qui permet d'inserer un type à une variable (IDF) ***/
+ 
+void insererType(char entite[], char type[])
+	{
+   int position;
+   position =rechercherIDF(entite);
+	 if(position !=-1)
+	  {
+	    strcpy(chercheDansListe(tab,position)->type,type); 
+	  }
+  }
+
+/***Step 3 : la fonction qui modifie le code des idfs constants ***/
+
+void CodeCst (char entite [])
+{
+	int position;
+	position =rechercherIDF(entite);
+	if (position != -1) 
+	{
+		strcpy(chercheDansListe(tab,position)->code,"IDF CONSTANT");
+	}
+}
+
+/***Step 4 : la fonction qui returne verifie la compatibilité des types  ***/
+
+int CompType (char entite [], char type [])
+{
+
+	int position;
+	position =rechercherIDF(entite);
+	if (position != -1) 
+	{
+        printf("CompType\n");
+		if (strcmp(chercheDansListe(tab,position)->type,type)==0){return 1;}//le type est compatible
+		else {return 0;}//le type n'est pas compatible
+	}
+
+
+}
+
+int CompTypeBinoBin(char entite1[], char entite2[]) {
+
+    int pos1 = rechercherIDF(entite1);
+    int pos2 = rechercherIDF(entite2);
+
+    // printf("%s and %s \n", chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type);
+
+    // Change the comparison to check for equality (return 1 if equal)
+    if (strcmp(chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type) == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+
+
+int rechercheNonDeclare(char entite[]) {
+  int position;
+  position=rechercherIDF(entite);
+       if (position != -1 && strcmp(chercheDansListe(tab,position)->type," ")==0){ return 0;} // la variable n'est pas declaree.
+       else {return 1;} // la variable est declaree.
+}
+
+
+
+char *intToString(int number) {
+    // Adjust the size based on your needs
+    char *result = (char *)malloc(20);
+
+    if (result != NULL) {
+        // Check the return value of sprintf to handle errors
+        if (sprintf(result, "%d", number) < 0) {
+            free(result);  // Free the allocated memory in case of an error
+            return NULL;   // Indicate an error
+        }
+    }
+
+    return result;
 }

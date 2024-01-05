@@ -1,0 +1,5 @@
+PROGRAM Test
+INTEGER B;
+CHARACTER C;
+A = 3 / 0 ;
+END

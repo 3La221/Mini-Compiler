@@ -4,13 +4,15 @@
    int nb_ligne = 1;
    int col = 1;
 	extern YYSTYPE yylval;
+  #define YY_DECL int yylex()
+
 %}
 
 
 letter [a-zA-Z]
 chiffre [0-9]
 IDF {letter}({letter}|{chiffre}|_)*
-int [+-]?{chiffre}+
+int [-]?{chiffre}+
 real {int}.{chiffre}+
 chaine \"[^"]*\"
 comment "%".*  
@@ -21,7 +23,7 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
 %%
 
 "PROGRAM"    { rechercher(yytext,"Mot cle",0,0, 1); printf("MC PROGRAM\n"); col += yyleng ; return mc_prog ;} 
-"END."        {  rechercher(yytext,"Mot cle",0,0, 1);printf("MC END\n"); col += yyleng ; return mc_end ;} 
+"END"        {  rechercher(yytext,"Mot cle",0,0, 1);printf("MC END\n"); col += yyleng ; return mc_end ;} 
 "ROUTINE"    {  rechercher(yytext,"Mot cle",0,0, 1);printf("MC ROUTINE\n"); col += yyleng ; return mc_routine ;} 
 "ENDR"       { rechercher(yytext,"Mot cle",0,0, 1); printf("MC ENDR\n"); col += yyleng ; return mc_endr ;} 
 
@@ -67,10 +69,10 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
               printf("Erreur Lexical: IDF trop long a la ligne %d \n", nb_ligne);
               
             }else {
-printf("IDF  %s\n", yytext); 
+            printf("IDF  %s\n", yytext); 
             }
 
-             
+             yylval.str = strdup(yytext);
              col += yyleng ; 
              return idf ;
   
