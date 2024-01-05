@@ -1,5 +1,11 @@
 PROGRAM Test
-INTEGER B;
+INTEGER A, B;
 CHARACTER C;
-A = 3 / 0 ;
+INTEGER TAB DIMENSION (20) ;
+
+A = 3 ;
+
+
+A = TAB ( 21 );
+
 END

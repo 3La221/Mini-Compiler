@@ -1,54 +1,23 @@
-INTEGER ROUTINE Comp (X,Y,Z)
-% Déclarations
+PROGRAM Test
+INTEGER A,B,C;
+CHARACTER Z ; 
+INTEGER TABL DIMENSION(20);
 
-INTEGER A,B; 
-REAL Z=10.0, T= 55555.87; 
-CHARACTER C*20; 
-INTEGER var4 DIMENSION (20); 
-REAL MAT DIMENSION (20, 200);
-LOGICAL D;
+% 1-Double Declaration 
+INTEGER A ;
 
-% Instructions
-A = MAT(5 , 4) + (B * 5);
-B = 30;
-C = "L3";
-D = TRUE;
+% 2-Var Non Declaree 
+D = A ;
 
-WRITE ("Donner la valeur de A :"); 
-READ (A);
-WRITE ("La Valeur de A est ", A, ".");
+% 3- Div / 0 
 
-Comp = A ;
-ENDR
+B = C / 0 ;
 
-PROGRAM HelloAcad
-% Déclarations
-INTEGER A,B,C ; 
-REAL Y ; 
-INTEGER TAB DIMENSION (10) ; 
+% 4- Indice < 0 
+A = TABL(-2);
 
-% Instructions
-A = TAB(11) + (B * 7);
-B = 30;
-C = 22+10*B;
+% 5- Indice > TAB.LENGTH
 
-A = CALL noroutine (A,B,C);
-EQUIVALENCE (A, B, C), (Y, TAB(3));
+A = TABL(21);
 
-
-
-
-DOWHILE (A.LT.10) A = A + 1;
-
-IF(((A.GT.(B+1)).OR.(C.EQ.TRUE))) THEN A = A - B ;
-ELSE A = A + B;
-
-WRITE ("Donner la valeur de T:"); 
-READ (T);
-WRITE ("La Valeur de T est ", T, ".");
-
-ENDIF
-A = 0;
-ENDDO;
-
-END.
+END

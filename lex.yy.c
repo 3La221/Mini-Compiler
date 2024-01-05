@@ -888,22 +888,23 @@ YY_RULE_SETUP
 {
   rechercher(yytext,"CONSTANT","INTEGER",atof(yytext),0);
   
-   if(atoi(yytext) < -32768 || atoi(yytext) > 32767 ) {
+   if(atof(yytext) < -32768 || atof(yytext) > 32767 ) {
     printf("Warning ! %s n'est pas inclus dans l'Intervalle des valeurs possibles\n",yytext) ;
    }
    else{
        printf("Integer - %s\n", yytext);
 
    }
+   yylval.entier = atof(yytext);
    col += yyleng ; 
    return cst_int ;
     } 
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 95 "./lexicale.l"
+#line 96 "./lexicale.l"
 {
-  rechercher(yytext,"CONSTANT","FLOAT",atof(yytext),0);
+  rechercher(yytext,"CONSTANT","REAL",atof(yytext),0);
  if(atof(yytext) < -32768.32767 || atof(yytext) > 32767.32767 ) {
     printf("Warning ! %s n'est pas inclus dans l'Intervalle des valeurs possibles\n",yytext) ;
    }
@@ -920,7 +921,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 111 "./lexicale.l"
+#line 112 "./lexicale.l"
 {
     rechercher(yytext,"CONSTANT","CHARACTER",atof(yytext),0);
     printf("Character - %s\n", yytext);
@@ -931,40 +932,41 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 123 "./lexicale.l"
+#line 124 "./lexicale.l"
 { rechercher(yytext,"SEP",0,0, 2); printf("SEP =\n"); col += yyleng ; return aff ; } 
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 124 "./lexicale.l"
+#line 125 "./lexicale.l"
 { rechercher(yytext,"SEP",0,0, 2);  printf("SEP ;\n"); col += yyleng ; return pvg ;} 
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 125 "./lexicale.l"
+#line 126 "./lexicale.l"
 {  rechercher(yytext,"SEP",0,0, 2);printf("SEP ,\n"); col += yyleng ; return vig ; } 
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 126 "./lexicale.l"
+#line 127 "./lexicale.l"
 {  rechercher(yytext,"SEP",0,0, 2);printf("SEP PE\n");col += yyleng ; return po ; } 
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 127 "./lexicale.l"
+#line 128 "./lexicale.l"
 {  rechercher(yytext,"SEP",0,0, 2);printf("SEP PF\n"); col += yyleng ; return pf ; } 
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 128 "./lexicale.l"
-{ printf("Comment : %s \n",yytext);
+#line 129 "./lexicale.l"
+{
+  // printf("Comment : %s \n",yytext);
                 
 
  }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 133 "./lexicale.l"
+#line 135 "./lexicale.l"
 { 
 
 
@@ -972,21 +974,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 138 "./lexicale.l"
+#line 140 "./lexicale.l"
 { nb_ligne++;  col=0; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 140 "./lexicale.l"
+#line 142 "./lexicale.l"
 { 
  printf("Erreur Lexical a la line %d col %d : Unrecognized character: %s\n" ,nb_ligne, col, yytext);            }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 143 "./lexicale.l"
+#line 145 "./lexicale.l"
 ECHO;
 	YY_BREAK
-#line 990 "lex.yy.c"
+#line 992 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1872,5 +1874,5 @@ int main()
 	return 0;
 	}
 #endif
-#line 143 "./lexicale.l"
+#line 145 "./lexicale.l"
 

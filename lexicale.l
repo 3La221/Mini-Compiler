@@ -81,19 +81,20 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
 {int}     {
   rechercher(yytext,"CONSTANT","INTEGER",atof(yytext),0);
   
-   if(atoi(yytext) < -32768 || atoi(yytext) > 32767 ) {
+   if(atof(yytext) < -32768 || atof(yytext) > 32767 ) {
     printf("Warning ! %s n'est pas inclus dans l'Intervalle des valeurs possibles\n",yytext) ;
    }
    else{
        printf("Integer - %s\n", yytext);
 
    }
+   yylval.entier = atof(yytext);
    col += yyleng ; 
    return cst_int ;
     } 
 
 {real}    {
-  rechercher(yytext,"CONSTANT","FLOAT",atof(yytext),0);
+  rechercher(yytext,"CONSTANT","REAL",atof(yytext),0);
  if(atof(yytext) < -32768.32767 || atof(yytext) > 32767.32767 ) {
     printf("Warning ! %s n'est pas inclus dans l'Intervalle des valeurs possibles\n",yytext) ;
    }
@@ -125,7 +126,8 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
 ","          {  rechercher(yytext,"SEP",0,0, 2);printf("SEP ,\n"); col += yyleng ; return vig ; } 
 "("          {  rechercher(yytext,"SEP",0,0, 2);printf("SEP PE\n");col += yyleng ; return po ; } 
 ")"          {  rechercher(yytext,"SEP",0,0, 2);printf("SEP PF\n"); col += yyleng ; return pf ; } 
-{comment}   { printf("Comment : %s \n",yytext);
+{comment}   {
+  // printf("Comment : %s \n",yytext);
                 
 
  }

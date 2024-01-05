@@ -26,6 +26,15 @@ typedef struct elt {
 } nouedms;
 
 
+typedef struct eltt *listtab;
+typedef struct eltt {
+    char name[20];
+    int taille ;
+    listtab svt;
+} nouedtab;
+
+
+listtab lalistetable = NULL ;
 list tab = NULL;
 listms tabm = NULL;
 listms tabs = NULL;
@@ -43,6 +52,8 @@ void initialisation()
     }
 
     listms tmp;
+    listtab tmp2 = NULL ; 
+
 
     // Free MC list
     while (tabm)
@@ -59,8 +70,43 @@ void initialisation()
         tabs = tabs->svt;
         free(tmp);
     }
+
+    while(lalistetable) 
+    {
+        tmp2 = lalistetable ;
+        lalistetable = lalistetable->svt ; 
+        free(tmp2) ;
+    }
 }
 
+void insereLaTable(char entite [] , int taille) {
+    
+    listtab nouv = malloc(sizeof(nouedtab));
+        if (nouv == NULL)
+        {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+
+        strcpy(nouv->name, entite);
+
+        nouv->taille = taille;
+
+        nouv->svt = lalistetable;
+        lalistetable = nouv;
+
+
+}
+
+int hatLaTaille(char entite []) {
+    listtab tmp = lalistetable ;
+    while(strcmp(tmp->name,entite)) {
+        tmp = tmp->svt ;
+
+    }
+
+    return (tmp->taille) ;
+}
 void inserer(char entite[], char code[], char type[], float val, int i, int y)
 { 
     switch (y)
@@ -311,7 +357,10 @@ int CompTypeBinoBin(char entite1[], char entite2[]) {
     // printf("%s and %s \n", chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type);
 
     // Change the comparison to check for equality (return 1 if equal)
-    if (strcmp(chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type) == 0) {
+    if (strcmp(chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type) == 0 || (strcmp(chercheDansListe(tab, pos1)->type, "INTEGER") == 0) && (strcmp(chercheDansListe(tab, pos2)->type, "FLOAT") == 0) 
+    || (strcmp(chercheDansListe(tab, pos1)->type, "FLOAT") == 0) && (strcmp(chercheDansListe(tab, pos2)->type, "INTEGER") == 0)
+    
+    ) {
         return 1;
     } else {
         return 0;
