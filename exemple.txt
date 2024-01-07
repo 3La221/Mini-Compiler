@@ -3,6 +3,7 @@ INTEGER A,B,C;
 CHARACTER Z ; 
 INTEGER TABL DIMENSION(20);
 LOGICAL ISHIM ;
+REAL D = 4 ;
 
 % 1-Double Declaration 
 INTEGER A ;
@@ -10,19 +11,23 @@ INTEGER A ;
 % 2-Var Non Declaree 
 D = A ;
 
+% Mis a jour des valeur 
 
-A = 4 ; 
+A = 3 ;
+Z = "Palestine";
+ISHIM = TRUE ;
 
 
 % 3- Div / 0 
-
 B = C / 0 ;
 
 % 4- Indice < 0 
+
 A = TABL(-2);
 
 % 5- Indice > TAB.LENGTH
 
 A = TABL(21);
+
 
 END

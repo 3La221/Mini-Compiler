@@ -107,7 +107,7 @@ void insereChars(char entite [] , char val []) ;
     int tmp = -1 ;
     int sauvConstInt=-1;
 	float sauvConstReal=-1;
-    char sauvType [20];
+    extern char sauvType [20];
     char sauvOpr [20];
 
 
@@ -547,13 +547,13 @@ static const yytype_uint16 yyrline[] =
 {
        0,    70,    70,    75,    80,    81,    82,    83,    87,    91,
       96,    97,   100,   101,   102,   103,   104,   105,   106,   108,
-     118,   124,   127,   131,   135,   139,   144,   148,   151,   154,
-     156,   156,   158,   160,   160,   160,   162,   164,   168,   168,
-     171,   180,   191,   191,   194,   198,   202,   225,   247,   251,
-     256,   261,   268,   269,   270,   270,   272,   308,   309,   310,
-     311,   316,   317,   318,   319,   320,   321,   322,   323,   324,
-     325,   328,   332,   340,   345,   349,   354,   360,   361,   363,
-     367,   379,   383,   394
+     115,   121,   124,   128,   132,   136,   141,   145,   148,   151,
+     153,   153,   155,   157,   157,   157,   159,   161,   165,   165,
+     168,   177,   188,   188,   191,   195,   199,   222,   244,   248,
+     253,   258,   265,   266,   267,   267,   269,   305,   306,   307,
+     308,   313,   314,   315,   316,   317,   318,   319,   320,   321,
+     322,   325,   329,   337,   342,   347,   352,   357,   358,   360,
+     364,   376,   380,   391
 };
 #endif
 
@@ -1636,7 +1636,7 @@ yyreduce:
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 127 "./syntax.y"
+#line 124 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (3)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (3)].str));}
            
@@ -1646,7 +1646,7 @@ yyreduce:
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 131 "./syntax.y"
+#line 128 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (6)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (6)].str));}
            
@@ -1656,7 +1656,7 @@ yyreduce:
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 135 "./syntax.y"
+#line 132 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (6)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (6)].str));}
            
@@ -1666,7 +1666,7 @@ yyreduce:
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 139 "./syntax.y"
+#line 136 "./syntax.y"
     {
             if(strcmp(sauvType,"CHARACTER") == 0) {insereChars((yyvsp[(1) - (1)].str),"");}
             if(rechercheNonDeclare((yyvsp[(1) - (1)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (1)].str));}
@@ -1677,7 +1677,7 @@ yyreduce:
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 144 "./syntax.y"
+#line 141 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (4)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (4)].str));}
            
@@ -1687,7 +1687,7 @@ yyreduce:
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 148 "./syntax.y"
+#line 145 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (4)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (4)].str));}
            
@@ -1697,7 +1697,7 @@ yyreduce:
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 160 "./syntax.y"
+#line 157 "./syntax.y"
     {
                 if(rechercheNonDeclare((yyvsp[(1) - (1)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (1)].str));}
 ;}
@@ -1706,7 +1706,7 @@ yyreduce:
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 164 "./syntax.y"
+#line 161 "./syntax.y"
     {   
              if(rechercheNonDeclare((yyvsp[(3) - (5)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (5)].str));}
 ;}
@@ -1715,7 +1715,7 @@ yyreduce:
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 171 "./syntax.y"
+#line 168 "./syntax.y"
     {
             if((yyvsp[(5) - (8)].entier) <= 0) {
 			 printf("Erreur semantique  a la ligne %d,la dimension ne peut pas etre negative ou zero \n", nb_ligne);
@@ -1730,7 +1730,7 @@ yyreduce:
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 180 "./syntax.y"
+#line 177 "./syntax.y"
     {
             // if($5 <= 0 || $7 <=0) {
 
@@ -1747,7 +1747,7 @@ yyreduce:
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 194 "./syntax.y"
+#line 191 "./syntax.y"
     {
 			if (rechercheNonDeclare((yyvsp[(1) - (3)].str))== 0) {insererType((yyvsp[(1) - (3)].str),sauvType);}
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, (yyvsp[(1) - (3)].str));}
@@ -1757,9 +1757,9 @@ yyreduce:
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 198 "./syntax.y"
+#line 195 "./syntax.y"
     {
-			if (rechercheNonDeclare((yyvsp[(1) - (1)].str))==0) {insererType((yyvsp[(1) - (1)].str),sauvType); if(strcmp(sauvType,"CHARACTER")==0) insereChars((yyvsp[(1) - (1)].str),"");}
+			if (rechercheNonDeclare((yyvsp[(1) - (1)].str))==0) {insererType((yyvsp[(1) - (1)].str),sauvType); }
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, (yyvsp[(1) - (1)].str));}
 		;}
     break;
@@ -1767,7 +1767,7 @@ yyreduce:
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 202 "./syntax.y"
+#line 199 "./syntax.y"
     {
 			if (rechercheNonDeclare((yyvsp[(1) - (5)].str))==0) {insererType((yyvsp[(1) - (5)].str),sauvType); 
             switch(tmp) {
@@ -1796,7 +1796,7 @@ yyreduce:
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 225 "./syntax.y"
+#line 222 "./syntax.y"
     {
             switch(tmp) {
                     case 0 :
@@ -1824,7 +1824,7 @@ yyreduce:
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 247 "./syntax.y"
+#line 244 "./syntax.y"
     {
 			if (rechercheNonDeclare((yyvsp[(1) - (5)].str))==0) {insererType((yyvsp[(1) - (5)].str),sauvType);}
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, (yyvsp[(1) - (5)].str));}
@@ -1834,7 +1834,7 @@ yyreduce:
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 251 "./syntax.y"
+#line 248 "./syntax.y"
     {
             
 			if (rechercheNonDeclare((yyvsp[(1) - (3)].str))==0) {insererType((yyvsp[(1) - (3)].str),sauvType);}
@@ -1845,7 +1845,7 @@ yyreduce:
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 256 "./syntax.y"
+#line 253 "./syntax.y"
     {
             
 			if (rechercheNonDeclare((yyvsp[(1) - (7)].str))==0) {insererType((yyvsp[(1) - (7)].str),sauvType);}
@@ -1856,7 +1856,7 @@ yyreduce:
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 261 "./syntax.y"
+#line 258 "./syntax.y"
     {
             
 			if (rechercheNonDeclare((yyvsp[(1) - (5)].str))==0) {insererType((yyvsp[(1) - (5)].str),sauvType);}
@@ -1867,28 +1867,28 @@ yyreduce:
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 268 "./syntax.y"
-    {;}
+#line 265 "./syntax.y"
+    {strcpy(sauvConstChar,(yyvsp[(1) - (1)].str)); tmp=2;;}
     break;
 
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 269 "./syntax.y"
+#line 266 "./syntax.y"
     { sauvConstInt = (yyvsp[(1) - (1)].entier) ; tmp = 0 ; ;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 270 "./syntax.y"
+#line 267 "./syntax.y"
     { sauvConstInt = (yyvsp[(1) - (1)].reel); tmp = 1;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 272 "./syntax.y"
+#line 269 "./syntax.y"
     {
             if(rechercheNonDeclare((yyvsp[(1) - (4)].str)) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (4)].str));}
             else {
@@ -1906,7 +1906,7 @@ yyreduce:
                          misajourreal((yyvsp[(1) - (4)].str),sauvConstReal);
                     break;
                     case 2 :
-                        printf("OOF") ;
+                        // printf("OOF") ;
                          misajourchar((yyvsp[(1) - (4)].str),sauvConstChar);
                     break;
                     case 3 :
@@ -1927,7 +1927,7 @@ yyreduce:
   case 60:
 
 /* Line 1455 of yacc.c  */
-#line 311 "./syntax.y"
+#line 308 "./syntax.y"
     {
 
             if(sauvConstInt == 0){printf("Erreur semantique 'division par zero' a la ligne %d \n",nb_ligne); }
@@ -1938,7 +1938,7 @@ yyreduce:
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 328 "./syntax.y"
+#line 325 "./syntax.y"
     {
     strcpy(sauvVar,(yyvsp[(1) - (1)].str));          
    if(rechercheNonDeclare((yyvsp[(1) - (1)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (1)].str));}
@@ -1948,7 +1948,7 @@ yyreduce:
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 332 "./syntax.y"
+#line 329 "./syntax.y"
     {
             
 
@@ -1962,7 +1962,7 @@ yyreduce:
   case 73:
 
 /* Line 1455 of yacc.c  */
-#line 340 "./syntax.y"
+#line 337 "./syntax.y"
     {strcpy(sauvVar,(yyvsp[(1) - (6)].str));            
          
           if(rechercheNonDeclare((yyvsp[(1) - (6)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (6)].str));}
@@ -1973,8 +1973,9 @@ yyreduce:
   case 74:
 
 /* Line 1455 of yacc.c  */
-#line 345 "./syntax.y"
+#line 342 "./syntax.y"
     {
+            strcpy(sauvVar,intToString((yyvsp[(1) - (1)].entier))); 
             sauvConstInt = (yyvsp[(1) - (1)].entier) ;
             tmp = 0 ; // integer
          ;}
@@ -1983,44 +1984,43 @@ yyreduce:
   case 75:
 
 /* Line 1455 of yacc.c  */
-#line 349 "./syntax.y"
+#line 347 "./syntax.y"
     {
+            strcpy(sauvVar,intToString((yyvsp[(1) - (1)].reel))); 
             sauvConstReal = (yyvsp[(1) - (1)].reel) ;
             tmp = 1 ; // real
-         
          ;}
     break;
 
   case 76:
 
 /* Line 1455 of yacc.c  */
-#line 354 "./syntax.y"
+#line 352 "./syntax.y"
     {
-            printf("SUVCHAR : %s\n",(yyvsp[(1) - (1)].str));
+            strcpy(sauvVar,(yyvsp[(1) - (1)].str)); 
             strcpy(sauvConstChar,(yyvsp[(1) - (1)].str)) ;
             tmp = 2 ; // char
-         
          ;}
     break;
 
   case 77:
 
 /* Line 1455 of yacc.c  */
-#line 360 "./syntax.y"
-    {sauvBOOL = 1 ; tmp = 3 ;}
+#line 357 "./syntax.y"
+    {sauvBOOL = 1 ; tmp = 3 ; strcpy(sauvVar,"LOGICAL");;}
     break;
 
   case 78:
 
 /* Line 1455 of yacc.c  */
-#line 361 "./syntax.y"
-    {sauvBOOL = 0 ; tmp = 3 ; ;}
+#line 358 "./syntax.y"
+    {sauvBOOL = 0 ; tmp = 3 ; strcpy(sauvVar,"LOGICAL");;}
     break;
 
   case 79:
 
 /* Line 1455 of yacc.c  */
-#line 363 "./syntax.y"
+#line 360 "./syntax.y"
     {          
     
       if(rechercheNonDeclare((yyvsp[(1) - (1)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (1)].str));}
@@ -2030,7 +2030,7 @@ yyreduce:
   case 80:
 
 /* Line 1455 of yacc.c  */
-#line 367 "./syntax.y"
+#line 364 "./syntax.y"
     {
         if((yyvsp[(1) - (1)].entier) > sauvTaille) {
             printf("Erreur semantique a la ligne %d : indice > La taille de tableau  \n", nb_ligne);
@@ -2048,7 +2048,7 @@ yyreduce:
   case 81:
 
 /* Line 1455 of yacc.c  */
-#line 379 "./syntax.y"
+#line 376 "./syntax.y"
     {
                     if(rechercheNonDeclare((yyvsp[(1) - (3)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (3)].str));}
 
@@ -2058,7 +2058,7 @@ yyreduce:
   case 82:
 
 /* Line 1455 of yacc.c  */
-#line 383 "./syntax.y"
+#line 380 "./syntax.y"
     {
         // if ($1 > hatLaTaille1Mat(sauvidfmat) || $3 > hatLaTaille2Mat(sauvidfmat)) {
         //                 printf("Erreur semantique a la ligne %d : indice > La taille de tableau  \n", nb_ligne);
@@ -2075,7 +2075,7 @@ yyreduce:
   case 83:
 
 /* Line 1455 of yacc.c  */
-#line 394 "./syntax.y"
+#line 391 "./syntax.y"
     {
                     if(rechercheNonDeclare((yyvsp[(3) - (3)].str)) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, (yyvsp[(1) - (3)].entier));}
 
@@ -2297,7 +2297,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 403 "./syntax.y"
+#line 400 "./syntax.y"
 
 
 int main (int argc, char *argv[])

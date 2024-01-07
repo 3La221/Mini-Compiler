@@ -1,5 +1,0 @@
-PROGRAM Test
-CHARACTER C ;
-
-C = "WEFWF" ;
-END

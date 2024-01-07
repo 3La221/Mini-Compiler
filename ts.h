@@ -126,12 +126,12 @@ void insereChars(char entite [] , char val[]) {
             fprintf(stderr, "Memory allocation failed\n");
             exit(EXIT_FAILURE);
         }
-
+        // printf("Chars = %s\n",entite) ;
         strcpy(nouv->name, entite);
-
         strcpy(nouv->val , val);
         nouv->svt = chars;
         chars = nouv;
+
 
 
 }
@@ -140,17 +140,18 @@ int rechercherchar(char entite[]){
   int i=0;
   listOfChars tmp = chars ;
   while( tmp != NULL ){
-    
+    // printf("tmp = %s\n",tmp->name);
     if (strcmp(entite,tmp->name)==0){return i;}  //retourne la position de l'IDF
     else i++;
     tmp = tmp->svt ;
   } 
   return -1;//si l'IDF n'existe pas
 }
+
+
 void misajourchar(char entite [] , char val [])
 {
     listOfChars tmp = chars ; 
-
     int pos = rechercherchar(entite) ;
     for(int i=0 ; i<pos ; i++) {
         tmp = tmp->svt ;

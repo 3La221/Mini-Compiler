@@ -36,7 +36,7 @@ void insereChars(char entite [] , char val []) ;
     int tmp = -1 ;
     int sauvConstInt=-1;
 	float sauvConstReal=-1;
-    char sauvType [20];
+    extern char sauvType [20];
     char sauvOpr [20];
 
 
@@ -109,9 +109,6 @@ INST_COND :  mc_if po EXP_ARTH pf mc_then LIST_INST  mc_else LIST_INST mc_endif
 
 
 
- 
-
- 
 
 
 
@@ -196,7 +193,7 @@ LIST_IDF_DEC : idf vig LIST_IDF_DEC {
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, $1);}
 		} |
                 idf {
-			if (rechercheNonDeclare($1)==0) {insererType($1,sauvType); if(strcmp(sauvType,"CHARACTER")==0) insereChars($1,"");}
+			if (rechercheNonDeclare($1)==0) {insererType($1,sauvType); }
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, $1);}
 		} |
         idf aff CST vig LIST_IDF_DEC {
@@ -265,7 +262,7 @@ LIST_IDF_DEC : idf vig LIST_IDF_DEC {
 		} 
 
 
-CST : cst_chaine  {}|
+CST : cst_chaine  {strcpy(sauvConstChar,$1); tmp=2;}|
     cst_int  { sauvConstInt = $1 ; tmp = 0 ; } |
     cst_real  { sauvConstInt = $1; tmp = 1}|
     
@@ -286,7 +283,7 @@ INST_AFF : idf aff EXP_ARTH  pvg {
                          misajourreal($1,sauvConstReal);
                     break;
                     case 2 :
-                        printf("OOF") ;
+                        // printf("OOF") ;
                          misajourchar($1,sauvConstChar);
                     break;
                     case 3 :
@@ -343,22 +340,22 @@ OPERANDE: idf {
 
 }
          | cst_int {
+            strcpy(sauvVar,intToString($1)); 
             sauvConstInt = $1 ;
             tmp = 0 ; // integer
          }
          |cst_real {
+            strcpy(sauvVar,intToString($1)); 
             sauvConstReal = $1 ;
             tmp = 1 ; // real
-         
          }
          | cst_chaine{
-            printf("SUVCHAR : %s\n",$1);
+            strcpy(sauvVar,$1); 
             strcpy(sauvConstChar,$1) ;
             tmp = 2 ; // char
-         
          }
-         | mc_true {sauvBOOL = 1 ; tmp = 3 }
-         | mc_false {sauvBOOL = 0 ; tmp = 3 ; }
+         | mc_true {sauvBOOL = 1 ; tmp = 3 ; strcpy(sauvVar,"LOGICAL");}
+         | mc_false {sauvBOOL = 0 ; tmp = 3 ; strcpy(sauvVar,"LOGICAL");}
 
 INDICE: idf {          
     

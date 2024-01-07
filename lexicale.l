@@ -5,6 +5,8 @@
   
    int nb_ligne = 1;
    int col = 1;
+   char sauvType [20];
+
 	extern YYSTYPE yylval;
   #define YY_DECL int yylex()
 
@@ -66,6 +68,8 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
 "FALSE"      {rechercher(yytext,"Mot cle",0,0, 1);  rechercher(yytext,"CONSTANT","LOGICAL",0,0);  printf("MC FALSE\n"); col += yyleng ; return mc_false ;}
 
 {IDF}        { 
+            if(strcmp(sauvType,"CHARACTER")==0)
+            insereChars(yytext,"");
             rechercher(yytext,"IDF"," ",0, 0);
             if (yyleng > 10){
               printf("Erreur Lexical: IDF trop long a la ligne %d \n", nb_ligne);
@@ -112,6 +116,7 @@ yylval.reel = atof(yytext);
   } 
 
 {chaine} {
+     
     rechercher(yytext,"CONSTANT","CHARACTER",atof(yytext),0);
     printf("Character - %s\n", yytext);
     col += yyleng ; 
