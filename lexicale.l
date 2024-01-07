@@ -1,6 +1,8 @@
 %{
 	#include "syntax.tab.h"  
 	#include "ts.h" 
+  #include "pgm.h"
+  
    int nb_ligne = 1;
    int col = 1;
 	extern YYSTYPE yylval;
@@ -59,9 +61,9 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
 "*"          { rechercher(yytext,"SEP",0,0, 2); printf("op *\n"); col += yyleng ; return mul ;} 
 "/"          { rechercher(yytext,"SEP",0,0, 2); printf("op /\n"); col += yyleng ; return divsep ;} 
 
-"CALL"       {  rechercher(yytext,"Mot cle",0,0, 1); printf("MC CALL\n"); col += yyleng ; return mc_call; } 
-"TRUE"      {rechercher(yytext,"Mot cle",0,0, 1); printf("MC TRUE\n"); col += yyleng ; return mc_true ;}
-"FALSE"      {rechercher(yytext,"Mot cle",0,0, 1); printf("MC FALSE\n"); col += yyleng ; return mc_false ;}
+"CALL"       {  rechercher(yytext,"Mot cle",0,0, 1);  printf("MC CALL\n"); col += yyleng ; return mc_call; } 
+"TRUE"      {rechercher(yytext,"Mot cle",0,0, 1); rechercher(yytext,"CONSTANT","LOGICAL",1,0); printf("MC TRUE\n"); col += yyleng ; return mc_true ;}
+"FALSE"      {rechercher(yytext,"Mot cle",0,0, 1);  rechercher(yytext,"CONSTANT","LOGICAL",0,0);  printf("MC FALSE\n"); col += yyleng ; return mc_false ;}
 
 {IDF}        { 
             rechercher(yytext,"IDF"," ",0, 0);
@@ -103,17 +105,17 @@ tabl {letter}({letter}|{chiffre}){0,9}\({chiffre}+(,{chiffre}+)?\)
    }
  
  col += yyleng ; 
-
+yylval.reel = atof(yytext);
  return cst_real ;
   
   
   } 
 
-  {chaine}      {
+{chaine} {
     rechercher(yytext,"CONSTANT","CHARACTER",atof(yytext),0);
     printf("Character - %s\n", yytext);
     col += yyleng ; 
-
+             yylval.str = strdup(yytext);
     return cst_chaine ;
 }
 

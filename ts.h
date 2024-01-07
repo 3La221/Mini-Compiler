@@ -16,6 +16,15 @@ typedef struct element {
     list svt;
 } noued;
 
+
+typedef struct elementis *listOfChars;
+typedef struct elementis {
+    int state;
+    char name[20];
+    char val [20];
+    listOfChars svt;
+} nouedchar;
+
 // Structure for the symbol table entry in the MC/SEP lists
 typedef struct elt *listms;
 typedef struct elt {
@@ -33,11 +42,23 @@ typedef struct eltt {
     listtab svt;
 } nouedtab;
 
+typedef struct elttt *listmat;
+typedef struct elttt {
+    char name[20];
+    int taille1 ;
+    int taille2 ;
+    listmat svt;
+} nouedmat;
+
+
+
 
 listtab lalistetable = NULL ;
+listmat lalistemat = NULL ;
 list tab = NULL;
 listms tabm = NULL;
 listms tabs = NULL;
+listOfChars chars = NULL ;
 
 void initialisation()
 {
@@ -53,6 +74,7 @@ void initialisation()
 
     listms tmp;
     listtab tmp2 = NULL ; 
+    listmat tmp4 = NULL ;
 
 
     // Free MC list
@@ -77,6 +99,65 @@ void initialisation()
         lalistetable = lalistetable->svt ; 
         free(tmp2) ;
     }
+
+     while(lalistemat) 
+    {
+        tmp4 = lalistemat ;
+        lalistemat = lalistemat->svt ; 
+        free(tmp4) ;
+    }
+    listOfChars tmp99 = chars ; 
+
+
+    while(chars) {
+        tmp99 = chars ;
+        chars = chars->svt ; 
+        free(tmp99);
+
+    }
+
+}
+
+void insereChars(char entite [] , char val[]) {
+    
+    listOfChars nouv = malloc(sizeof(nouedchar));
+        if (nouv == NULL)
+        {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+
+        strcpy(nouv->name, entite);
+
+        strcpy(nouv->val , val);
+        nouv->svt = chars;
+        chars = nouv;
+
+
+}
+int rechercherchar(char entite[]){
+
+  int i=0;
+  listOfChars tmp = chars ;
+  while( tmp != NULL ){
+    
+    if (strcmp(entite,tmp->name)==0){return i;}  //retourne la position de l'IDF
+    else i++;
+    tmp = tmp->svt ;
+  } 
+  return -1;//si l'IDF n'existe pas
+}
+void misajourchar(char entite [] , char val [])
+{
+    listOfChars tmp = chars ; 
+
+    int pos = rechercherchar(entite) ;
+    for(int i=0 ; i<pos ; i++) {
+        tmp = tmp->svt ;
+    }
+
+    strcpy(tmp->val,val) ;
+
 }
 
 void insereLaTable(char entite [] , int taille) {
@@ -98,6 +179,26 @@ void insereLaTable(char entite [] , int taille) {
 
 }
 
+void insereLaMat(char entite [] , int taille1 , int taille2) {
+    
+    listmat nouv = malloc(sizeof(nouedtab));
+        if (nouv == NULL)
+        {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+
+        strcpy(nouv->name, entite);
+
+        nouv->taille1 = taille1;
+        nouv->taille2 = taille2 ;
+
+        nouv->svt = lalistemat;
+        lalistemat = nouv;
+
+
+}
+
 int hatLaTaille(char entite []) {
     listtab tmp = lalistetable ;
     while(strcmp(tmp->name,entite)) {
@@ -106,6 +207,26 @@ int hatLaTaille(char entite []) {
     }
 
     return (tmp->taille) ;
+}
+
+
+int hatLaTaille1Mat(char entite []) {
+    listmat tmp = lalistemat ;
+    while(strcmp(tmp->name,entite)) {
+        tmp = tmp->svt ;
+
+    }
+
+    return (tmp->taille1) ;
+}
+int hatLaTaille2Mat(char entite []) {
+    listmat tmp = lalistemat ;
+    while(strcmp(tmp->name,entite)) {
+        tmp = tmp->svt ;
+
+    }
+
+    return (tmp->taille2) ;
 }
 void inserer(char entite[], char code[], char type[], float val, int i, int y)
 { 
@@ -253,6 +374,20 @@ void afficher()
         }
         tmp = tmp->svt;
     }
+     printf("\n/***************Table des variable de type CHARACHTERS*************/\n");
+    printf("_____________________________________\n");
+    printf("\t| NomEntite |  VAL | \n");
+    printf("_____________________________________\n");
+
+    listOfChars tmpp = chars ; 
+    while (tmpp!= NULL)
+    {
+        
+            printf("\t|%10s |%15s | \n", tmpp->name, tmpp->val);
+        
+        tmpp = tmpp->svt;
+    }
+    
 
     printf("\n/***************Table des symboles mots clés*************/\n");
     printf("_____________________________________\n");
@@ -283,6 +418,8 @@ void afficher()
         }
         tmp2 = tmp2->svt;
     }
+
+
 }
 list chercheDansListe(list t , int pos){
 
@@ -392,3 +529,22 @@ char *intToString(int number) {
 
     return result;
 }
+
+void misajourint(char entite[] , int val ) {
+
+    int pos  = rechercherIDF(entite);
+    list tmp = chercheDansListe(tab,pos) ;
+    tmp->val = val ;
+
+
+}
+
+void misajourreal(char entite[] , float val ) {
+
+    int pos  = rechercherIDF(entite);
+    list tmp = chercheDansListe(tab,pos) ;
+    tmp->val = val ;
+
+
+}
+

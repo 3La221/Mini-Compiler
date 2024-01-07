@@ -2,12 +2,17 @@ PROGRAM Test
 INTEGER A,B,C;
 CHARACTER Z ; 
 INTEGER TABL DIMENSION(20);
+LOGICAL ISHIM ;
 
 % 1-Double Declaration 
 INTEGER A ;
 
 % 2-Var Non Declaree 
 D = A ;
+
+
+A = 4 ; 
+
 
 % 3- Div / 0 
 
