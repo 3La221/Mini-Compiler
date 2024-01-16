@@ -51,8 +51,8 @@ int n = 0 ;
 
 int Fin_if=0,deb_else=0;
 int qc=0;
-
-
+int err = 0 ;
+int inroutine = 0 ;
 FILE* yyin;
 %}
 
@@ -92,20 +92,18 @@ TYPE : mc_real { strcpy(sauvType,"REAL"); } |
        mc_logical { strcpy(sauvType,"LOGICAL"); } 
 
 
+ROUTINE : A ROUTINE | {
+    n = 0 ;
+}
+A : B /*R*/DEC LIST_INST mc_endr  
+B : TYPE mc_routine idf po ARGS pf  {
+    if (rechercheNonDeclare($3)== 0) { insererType($3,sauvType); insereRoutine($3,n); n = 0;}
+			else {printf("Erreur semantique 'double declaration' a la ligne %d,nom de routine %s est deja utilise  \n", nb_ligne, $3);}
+    
+} 
 
-ROUTINE : A ROUTINE   |
-A : B po ARGS pf DEC LIST_INST mc_endr 
-
-B : TYPE mc_routine idf {
-            strcpy(sauvVar,$3); 
-			if (rechercheNonDeclare($3)== 0) { insererType($3,sauvType); insereRoutine($3,n);}
-			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, $3);}
-
-
-		} 
-
-ARGS : idf vig ARGS {n++; printf("N = %d\n",n) ;} | 
-        idf {n++; printf("N = %d\n",n) ; addArgs(sauvVar,n+2); n = 0 ;}
+ARGS : idf vig ARGS {n = n + 1; printf("N = %d\n",n) ;} | 
+        idf {n = n + 1; printf("N = %d\n",n) ;}
 
 
 INST : INST_COND |
@@ -128,8 +126,8 @@ D : F pf mc_then LIST_INST  /*R2*/ {
 
 }
 F : mc_if po EXP_ARTH /*R1*/ {
-    quadr("BZ","" ,"TMP","");
-    sauvBz = qc -1; 
+    quadr("BZ","","TMP","");
+    sauvBz = qc-1; 
 }
 
 
@@ -180,14 +178,13 @@ VAR_LIST : idf vig  VAR_LIST {
 
 
 INST_CALL : idf aff mc_call idf po IDF_LIST pf pvg   {
-    printf("N lhna = %d\n",n) ;
-    if (nbrArgOfR($4) < n) {
+    if (nbrArgOfR($4) > n) {
         printf("Erreur semantique a la ligne %d : manque d'arguments \n", nb_ligne);
     
         
         
-    }else if (nbrArgOfR($4) > n) {
-        printf("Erreur semantique a la ligne %d : args >  \n", nb_ligne);
+    }else if (nbrArgOfR($4) < n) {
+        printf("Erreur semantique a la ligne %d : args > nbre d'args demande  \n", nb_ligne);
     
         
         
@@ -342,9 +339,10 @@ INST_AFF : idf aff EXP_ARTH  pvg {
                     break;
                     case 1 :
                          misajourreal($1,sauvConstReal);
-                         printf("\n REAL : %s \n",sauvVar);
+                         if(!err)
                          if(h) quadr("=","TMP","",$1); else quadr("=",sauvVar,"",$1);
                          h = 0 ;
+                         err = 0 ; 
                          
                     break;
                     case 2 :
@@ -387,8 +385,8 @@ EXP_ARTH: EXP_ARTH plus EXP_ARTH{
          }
          | EXP_ARTH divsep EXP_ARTH  {
 tmp = 1;
-            if(sauvConstInt == 0){printf("Erreur semantique 'division par zero' a la ligne %d \n",nb_ligne); }
-                else{
+            if(sauvConstInt == 0){printf("Erreur semantique 'division par zero' a la ligne %d \n",nb_ligne); err = 1 ;}
+            else{
                  quadr("/",ope1,ope2,"TMP");h = 1 ;
 
                 }
@@ -476,9 +474,11 @@ INDICE: idf {
       | cst_int {
         if($1 > sauvTaille) {
             printf("Erreur semantique a la ligne %d : indice > La taille de tableau  \n", nb_ligne);
+            err = 1 ;
         }
         if ($1 < 0 ) {
             printf("Erreur semantique a la ligne %d : indice  < 0   \n", nb_ligne);
+            err = 1 ;
         }
 
 

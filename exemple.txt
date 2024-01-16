@@ -1,16 +1,30 @@
-
 INTEGER ROUTINE testr1(x , y , d)
 
 INTEGER z ; 
-LOGICAL f ; 
+LOGICAL t ;
 
 testr1 = z ;
     
 ENDR
 
+INTEGER ROUTINE testr2(x)
+
+INTEGER z ; 
+testr2 = z ;
+    
+ENDR
+
+INTEGER ROUTINE testr3(v , q , b)
+
+INTEGER z ; 
+testr2 = z ;
+    
+ENDR
+
+
 
 PROGRAM Test
-INTEGER A,B,C;
+INTEGER A,B,C,X;
 CHARACTER Z ; 
 INTEGER TABL DIMENSION(20);
 LOGICAL ISHIM ;
@@ -20,32 +34,43 @@ REAL D = 4 ;
 % 1-Double Declaration 
 INTEGER A ;
 
+%2 Var Non Declaree
+iq = 100 ;
 
 
-% 2-Var Non Declaree 
-D =  CALL SALAH( C );
+% 3-Type incomp 
+D =  "Ibn-t";
 
-% Mis a jour des valeur 
 
+% Mis a jour des valeurs
 A = 3 ;
 Z = "Palestine";
 ISHIM = TRUE ;
 
 
-% 3- Div / 0 
+% 4- Div / 0 
 B = C / 0 ;
 
-% 4- Indice < 0 
+% 5- Indice < 0 
 
 B = TABL(-2);
 
-% 5- Indice > TAB.LENGTH
+% 6- Indice > TAB.LENGTH
 
 B = TABL(21);
 
 
-% 6- Manque d'arguments 
+% 7- Manque d'arguments 
 B = CALL testr1(B);
+
+
+DOWHILE (A.LT.10)
+
+ A = A + 10;  
+ 
+ ENDDO;
+
+IF(B.GT.3) THEN X = X - 1 ; ELSE D = TRUE ; ENDIF 
 
 
 END

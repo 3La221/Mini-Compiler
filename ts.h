@@ -181,7 +181,6 @@ void addArgs(char entite [] , int nb) {
 int nbrArgOfR(char entite [] ) {
     listroutine r = routines ; 
     while( r != NULL ) {
-        printf("%s args = %d \n",r->name , r->nbrArgs) ;
 
         if(strcmp(entite,r->name) == 0) {
             return r->nbrArgs;
@@ -477,6 +476,20 @@ void afficher()
             printf("\t|%10s |%15s | \n", tmp2->name, tmp2->type);
         }
         tmp2 = tmp2->svt;
+    }
+
+
+    printf("\n/***************Table des symboles séparateurs*************/\n");
+    printf("_____________________________________\n");
+    printf("\t| NomRoutine |  NbrArgs | \n");
+    printf("_____________________________________\n");
+
+    listroutine r = routines;
+    while (r != NULL)
+    {
+            printf("\t|%10s |%15d | \n", r->name, r->nbrArgs);
+        
+        r = r->svt;
     }
 
 
