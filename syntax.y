@@ -15,14 +15,19 @@
     int  hatLaTaille(char entite []);
     void misajourint(char entite [] , int val) ;
     void insereLaMat(char entite [] , int taille1 , int taille2);
-int hatLaTaille1Mat(char entite []) ;
+    int hatLaTaille1Mat(char entite []) ;
 int hatLaTaille2Mat(char entite []) ;
-void quadr(char opr[],char op1[],char op2[],char res[]);
 void ajour_quad(int num_quad, int colon_quad, char val []);
 void afficher_qdr();
 void misajourreal(char entite [] , float val ) ;
 void misajourchar(char entite [] , char val []);
 void insereChars(char entite [] , char val []) ;
+int nbrArgOfR(char entite [] );
+void insereRoutine(char entite [] , int val);
+void addArgs(char entite [] , int nb) ;
+void quadr(char opr[],char op1[],char op2[],char res[]);
+void ajour_quad(int num_quad, int colon_quad, char val []);
+int n = 0 ;
     int sauvBOOL = -1 ;
     char sauvConstChar [20] ;
     char  sauvVar [20] ;
@@ -31,6 +36,7 @@ void insereChars(char entite [] , char val []) ;
     int sauvMat2 ;
     extern int col ; 
     char sauvidfmat [20] ;
+    char ope1 [20] , ope2 [20];
     extern int nb_ligne ;
     char* file_name = NULL;
     int tmp = -1 ;
@@ -38,6 +44,9 @@ void insereChars(char entite [] , char val []) ;
 	float sauvConstReal=-1;
     extern char sauvType [20];
     char sauvOpr [20];
+    int nbr = 0 ;
+    int h = 0 ;
+    int sauvBz = 0 , sauvBr = 0 , fin = 0 ,sauvDeb = 0; 
 
 
 int Fin_if=0,deb_else=0;
@@ -84,17 +93,19 @@ TYPE : mc_real { strcpy(sauvType,"REAL"); } |
 
 
 
-ROUTINE : TYPE mc_routine idf po ARGS pf DEC LIST_INST mc_endr ROUTINE  {
-			if (rechercheNonDeclare($3)== 0) {insererType($3,sauvType);}
+ROUTINE : A ROUTINE   |
+A : B po ARGS pf DEC LIST_INST mc_endr 
+
+B : TYPE mc_routine idf {
+            strcpy(sauvVar,$3); 
+			if (rechercheNonDeclare($3)== 0) { insererType($3,sauvType); insereRoutine($3,n);}
 			else {printf("Erreur semantique 'double declaration' a la ligne %d,la variable %s est deja declaree \n", nb_ligne, $3);}
 
-		} |
 
+		} 
 
-
-
-ARGS : idf vig ARGS | 
-        idf
+ARGS : idf vig ARGS {n++; printf("N = %d\n",n) ;} | 
+        idf {n++; printf("N = %d\n",n) ; addArgs(sauvVar,n+2); n = 0 ;}
 
 
 INST : INST_COND |
@@ -105,16 +116,36 @@ INST : INST_COND |
             INST_WRITE |
             INST_WHILE 
 
-INST_COND :  mc_if po EXP_ARTH pf mc_then LIST_INST  mc_else LIST_INST mc_endif
+INST_COND :  C LIST_INST mc_endif/*R4*/{
+    ajour_quad(sauvBr,1,intToString(qc));
+}
+C : D  mc_else /*R3*/ {
+    ajour_quad(sauvBz,1,intToString(qc)) ;
+}
+D : F pf mc_then LIST_INST  /*R2*/ {
+    quadr("BR","" , "TMP","");
+    sauvBr = qc-1;
+
+}
+F : mc_if po EXP_ARTH /*R1*/ {
+    quadr("BZ","" ,"TMP","");
+    sauvBz = qc -1; 
+}
 
 
 
+INST_WHILE: G LIST_INST mc_enddo pvg/*R3*/{
+        quadr("BR",intToString(sauvDeb),"","");
+        ajour_quad(sauvBz,1,intToString(qc));
+}
+G : H   po EXP_ARTH pf /*R2*/ {
+    quadr("BZ","","TMP","");
+    sauvBz = qc-1 ;
 
-
-
-INST_WHILE: mc_dowhile po EXP_ARTH pf LIST_INST mc_enddo pvg
-
-
+}
+H : mc_dowhile /*R1*/ {
+    sauvDeb = qc; 
+}
 
 
 
@@ -148,9 +179,37 @@ VAR_LIST : idf vig  VAR_LIST {
 } |
 
 
-INST_CALL : idf aff mc_call idf po IDF_LIST pf pvg  
+INST_CALL : idf aff mc_call idf po IDF_LIST pf pvg   {
+    printf("N lhna = %d\n",n) ;
+    if (nbrArgOfR($4) < n) {
+        printf("Erreur semantique a la ligne %d : manque d'arguments \n", nb_ligne);
+    
+        
+        
+    }else if (nbrArgOfR($4) > n) {
+        printf("Erreur semantique a la ligne %d : args >  \n", nb_ligne);
+    
+        
+        
+    }
+    if(!CompTypeBinoBin($1,$4)){
+				printf("Erreur semantique a la ligne %d : ICOMPATIBILITE DE TYPE de la variable %s \n", nb_ligne, $1); 
+                
+                
+            }
+    if(rechercheNonDeclare($1) == 0) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, $1);}
+    if(rechercheNonDeclare($4) == 0) {printf("Erreur semantique a la ligne %d : routine %s Non declaree  \n", nb_ligne, $4);}
 
-IDF_LIST : idf vig IDF_LIST | idf 
+    n = 0 ;
+
+}
+
+IDF_LIST : idf vig IDF_LIST{ n++ ; } | idf {n++;} 
+            | cst_int vig IDF_LIST { n++ ; }  
+            | cst_int {  n++ ; }
+            | cst_real vig IDF_LIST { n++ ; }
+            | cst_chaine vig IDF_LIST { n++ ; }
+            | cst_chaine { n++ ; }
 
 INST_WRITE : mc_write po SMTH pf pvg 
 
@@ -278,17 +337,28 @@ INST_AFF : idf aff EXP_ARTH  pvg {
                 switch(tmp) {
                     case 0 :
                         misajourint($1,sauvConstInt);
+                        if(h) quadr("=","TMP","",$1); else quadr("=",intToString(sauvConstInt),"",$1);
+                        h = 0 ;
                     break;
                     case 1 :
                          misajourreal($1,sauvConstReal);
+                         printf("\n REAL : %s \n",sauvVar);
+                         if(h) quadr("=","TMP","",$1); else quadr("=",sauvVar,"",$1);
+                         h = 0 ;
+                         
                     break;
                     case 2 :
                         // printf("OOF") ;
                          misajourchar($1,sauvConstChar);
+                         quadr("=",sauvConstChar,"",$1);
                     break;
                     case 3 :
+                        
                         misajourint($1,sauvBOOL) ;
+                        if(sauvBOOL) quadr("=","TRUE","",$1); else quadr("=","FALSE","",$1);
                     break ;
+
+                    
 
 
 
@@ -302,27 +372,66 @@ INST_AFF : idf aff EXP_ARTH  pvg {
 
 
 
-EXP_ARTH: EXP_ARTH plus EXP_ARTH
-         | EXP_ARTH moin EXP_ARTH
-         | EXP_ARTH mul EXP_ARTH
+EXP_ARTH: EXP_ARTH plus EXP_ARTH{
+            tmp = 1;
+            quadr("+",ope1,ope2,"TMP");
+            h = 1 ;
+         }
+         | EXP_ARTH moin EXP_ARTH{
+            tmp = 1;
+            quadr("-",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mul EXP_ARTH {
+            tmp = 1;
+            quadr("*",ope1,ope2,"TMP");h = 1 ;
+         }
          | EXP_ARTH divsep EXP_ARTH  {
-
+tmp = 1;
             if(sauvConstInt == 0){printf("Erreur semantique 'division par zero' a la ligne %d \n",nb_ligne); }
+                else{
+                 quadr("/",ope1,ope2,"TMP");h = 1 ;
 
+                }
            }
-         | EXP_ARTH mc_ge EXP_ARTH
-         | EXP_ARTH mc_gt EXP_ARTH
-         | EXP_ARTH mc_le EXP_ARTH
-         | EXP_ARTH mc_lt EXP_ARTH
-         | EXP_ARTH mc_ne EXP_ARTH
-         | EXP_ARTH mc_eq EXP_ARTH
-         | EXP_ARTH mc_and EXP_ARTH
-         | EXP_ARTH mc_or EXP_ARTH
+         | EXP_ARTH mc_ge EXP_ARTH {
+            tmp = 1;
+            quadr("GE",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_gt EXP_ARTH{
+            tmp = 1;
+            quadr("GT",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_le EXP_ARTH{
+            tmp = 1;
+            quadr("LE",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_lt EXP_ARTH{
+            tmp = 1;
+            quadr("LT",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_ne EXP_ARTH{
+            tmp = 1;
+            quadr("NEQ",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_eq EXP_ARTH{
+            tmp = 1;
+            quadr("EQ",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_and EXP_ARTH{
+            tmp = 1;
+            quadr("AND",ope1,ope2,"TMP");h = 1 ;
+         }
+         | EXP_ARTH mc_or EXP_ARTH{
+            tmp = 1;
+            quadr("OR",ope1,ope2,"TMP");h = 1 ;
+         }
          | po EXP_ARTH pf
          | OPERANDE
 
 
 OPERANDE: idf {
+    nbr++;
+    if(nbr == 1 ) strcpy(ope1,$1) ; else {strcpy(ope2,$1) ; nbr=0;}
     strcpy(sauvVar,$1);          
    if(rechercheNonDeclare($1) == 0 ) {printf("Erreur semantique a la ligne %d : variable %s Non declaree  \n", nb_ligne, $1);}
 }
@@ -340,12 +449,15 @@ OPERANDE: idf {
 
 }
          | cst_int {
+            nbr++;
+    if(nbr == 1 ) strcpy(ope1,intToString($1)) ; else {strcpy(ope2,intToString($1)) ; nbr=0;}
             strcpy(sauvVar,intToString($1)); 
             sauvConstInt = $1 ;
             tmp = 0 ; // integer
          }
          |cst_real {
-            strcpy(sauvVar,intToString($1)); 
+            // strcpy(sauvVar,intToString($1)); 
+            sprintf(sauvVar,"%f",$1);
             sauvConstReal = $1 ;
             tmp = 1 ; // real
          }

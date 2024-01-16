@@ -1,3 +1,14 @@
+
+INTEGER ROUTINE testr1(x , y , d)
+
+INTEGER z ; 
+LOGICAL f ; 
+
+testr1 = z ;
+    
+ENDR
+
+
 PROGRAM Test
 INTEGER A,B,C;
 CHARACTER Z ; 
@@ -5,11 +16,14 @@ INTEGER TABL DIMENSION(20);
 LOGICAL ISHIM ;
 REAL D = 4 ;
 
+
 % 1-Double Declaration 
 INTEGER A ;
 
+
+
 % 2-Var Non Declaree 
-D = A ;
+D =  CALL SALAH( C );
 
 % Mis a jour des valeur 
 
@@ -23,11 +37,15 @@ B = C / 0 ;
 
 % 4- Indice < 0 
 
-A = TABL(-2);
+B = TABL(-2);
 
 % 5- Indice > TAB.LENGTH
 
-A = TABL(21);
+B = TABL(21);
+
+
+% 6- Manque d'arguments 
+B = CALL testr1(B);
 
 
 END

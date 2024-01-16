@@ -457,7 +457,7 @@ char *yytext;
 #line 2 "./lexicale.l"
 	#include "syntax.tab.h"  
 	#include "ts.h" 
-  #include "pgm.h"
+  #include "quad.h"
   
    int nb_ligne = 1;
    int col = 1;

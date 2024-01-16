@@ -16,6 +16,13 @@ typedef struct element {
     list svt;
 } noued;
 
+typedef struct relement *listroutine;
+typedef struct relement {
+    char name[20];
+    int nbrArgs ;
+    listroutine svt;
+} routine;
+
 
 typedef struct elementis *listOfChars;
 typedef struct elementis {
@@ -59,6 +66,7 @@ list tab = NULL;
 listms tabm = NULL;
 listms tabs = NULL;
 listOfChars chars = NULL ;
+listroutine routines = NULL ;
 
 void initialisation()
 {
@@ -135,6 +143,57 @@ void insereChars(char entite [] , char val[]) {
 
 
 }
+
+void insereRoutine(char entite [] , int val) {
+
+    
+    listroutine nouv = malloc(sizeof(routine));
+        if (nouv == NULL)
+        {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+        // printf("Chars = %s\n",entite) ;
+        strcpy(nouv->name, entite);
+        nouv->nbrArgs = val ;
+        nouv->svt = routines;
+        routines = nouv;
+
+
+
+}
+
+
+void addArgs(char entite [] , int nb) {
+     listroutine r = routines ; 
+     while( r != NULL ){
+        if(strcmp(entite,r->name) == 0) {
+            r->nbrArgs = nb ;
+        }
+        r = r->svt;
+        
+     }
+
+}
+
+
+
+int nbrArgOfR(char entite [] ) {
+    listroutine r = routines ; 
+    while( r != NULL ) {
+        printf("%s args = %d \n",r->name , r->nbrArgs) ;
+
+        if(strcmp(entite,r->name) == 0) {
+            return r->nbrArgs;
+        }
+    r = r->svt ;
+
+    }
+
+}
+
+
+
 int rechercherchar(char entite[]){
 
   int i=0;
@@ -491,12 +550,12 @@ int CompTypeBinoBin(char entite1[], char entite2[]) {
 
     int pos1 = rechercherIDF(entite1);
     int pos2 = rechercherIDF(entite2);
-
+    
     // printf("%s and %s \n", chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type);
 
     // Change the comparison to check for equality (return 1 if equal)
     if (strcmp(chercheDansListe(tab, pos1)->type, chercheDansListe(tab, pos2)->type) == 0 || (strcmp(chercheDansListe(tab, pos1)->type, "INTEGER") == 0) && (strcmp(chercheDansListe(tab, pos2)->type, "FLOAT") == 0) 
-    || (strcmp(chercheDansListe(tab, pos1)->type, "FLOAT") == 0) && (strcmp(chercheDansListe(tab, pos2)->type, "INTEGER") == 0)
+    || (strcmp(chercheDansListe(tab, pos1)->type, "REAL") == 0) && (strcmp(chercheDansListe(tab, pos2)->type, "INTEGER") == 0)
     
     ) {
         return 1;
